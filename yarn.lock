@@ -3394,6 +3394,11 @@ copy-descriptor@^0.1.0:
   resolved "https://registry.npmmirror.com/copy-descriptor/-/copy-descriptor-0.1.1.tgz"
   integrity sha512-XgZ0pFcakEUlbwQEVNg3+QAis1FyTL3Qel9FYy8pSkQqoG3PNoT0bOCQtOXcOkur21r2Eq2kI+IE+gsmAEVlYw==
 
+copy-text-to-clipboard@^3.0.1:
+  version "3.2.0"
+  resolved "https://registry.npmjs.org/copy-text-to-clipboard/-/copy-text-to-clipboard-3.2.0.tgz"
+  integrity sha512-RnJFp1XR/LOBDckxTib5Qjr/PMfkatD0MUCQgdpqS8MdKiNUzBjAQBEN6oUy+jW7LI93BBG3DtMB2KOOKpGs2Q==
+
 copy-to-clipboard@^3.2.0:
   version "3.3.3"
   resolved "https://registry.npmjs.org/copy-to-clipboard/-/copy-to-clipboard-3.3.3.tgz"
@@ -3425,7 +3430,7 @@ core-js-pure@^3.30.2:
   resolved "https://registry.npmmirror.com/core-js-pure/-/core-js-pure-3.31.1.tgz"
   integrity sha512-w+C62kvWti0EPs4KPMCMVv9DriHSXfQOCQ94bGGBiEW5rrbtt/Rz8n5Krhfw9cpFyzXBjf3DB3QnPdEzGDY4Fw==
 
-core-js@^3.31.0:
+core-js@^3.11.0, core-js@^3.31.0:
   version "3.31.1"
   resolved "https://registry.npmmirror.com/core-js/-/core-js-3.31.1.tgz"
   integrity sha512-2sKLtfq1eFST7l7v62zaqXacPc7uG8ZAya8ogijLhTtaKNcpzpB4TMoTw2Si+8GYKRwFPMMtUT0263QFWFfqyQ==
@@ -7007,6 +7012,11 @@ multimatch@^5.0.0, multimatch@5.0.0:
     array-union "^2.1.0"
     arrify "^2.0.1"
     minimatch "^3.0.4"
+
+mutation-observer@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.npmjs.org/mutation-observer/-/mutation-observer-1.0.3.tgz"
+  integrity sha512-M/O/4rF2h776hV7qGMZUH3utZLO/jK7p8rnNgGkjKUw8zCGjRQPxB8z6+5l8+VjRUQ3dNYu4vjqXYLr+U8ZVNA==
 
 nan@^2.12.1:
   version "2.17.0"
@@ -11129,6 +11139,16 @@ vary@~1.1.2:
   version "1.1.2"
   resolved "https://registry.npmmirror.com/vary/-/vary-1.1.2.tgz"
   integrity sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==
+
+vconsole@^3.15.1:
+  version "3.15.1"
+  resolved "https://registry.npmjs.org/vconsole/-/vconsole-3.15.1.tgz"
+  integrity sha512-KH8XLdrq9T5YHJO/ixrjivHfmF2PC2CdVoK6RWZB4yftMykYIaXY1mxZYAic70vADM54kpMQF+dYmvl5NRNy1g==
+  dependencies:
+    "@babel/runtime" "^7.17.2"
+    copy-text-to-clipboard "^3.0.1"
+    core-js "^3.11.0"
+    mutation-observer "^1.0.3"
 
 vfile-location@^2.0.0:
   version "2.0.6"

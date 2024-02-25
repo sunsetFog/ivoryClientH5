@@ -1,62 +1,58 @@
 .loginApt {
     width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: url('./platform/ky/background.webp');
-    background-size: 100% 100%;
+    background: url('./img/loginBg.jpg');
     background-repeat: no-repeat;
-    .mercury {
-        width: 480px;
-        height: 560px;
-        .venus {
-            width: 100%;
-            height: 80px;
+    background-size: 100% 100%;
+    padding: 53px 24px 0;
+    .logoBox {
+        width: 100%;
+        height: 88px;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 60px;
+        img {
+            height: 100%;
+        }
+    }
+    .pumpkin {
+        width: 100%;
+        height: 48px;
+        border-radius: 12px;
+        position: relative;
+        border: 1px solid transparent;
+        transition: border 0.3s;
+        background: rgba(255, 255, 255, 0.08);
+    }
+    .autumn {
+        width: 100%;
+        height: 12px;
+    }
+    .scenery {
+        width: 100%;
+        height: 20px;
+        .remember {
+            height: 100%;
+            float: left;
             display: flex;
-            justify-content: center;
+            align-items: center;
             img {
-                width: 205px;
-                height: 100%;
+                width: 18px;
+                height: 18px;
+                margin-right: 4px;
+            }
+            span {
+                color: rgba(255, 255, 255, 0.6);
+                font-size: 12px;
             }
         }
-        .cartoon {
-            width: 100%;
-            margin-top: 12px;
-            padding: 12px;
-            border-radius: 48px;
-            border: 2px solid rgba(51, 88, 148, 0.4);
-            background: linear-gradient(145.81deg, rgba(67, 111, 185, 0.2) 3.59%, rgba(24, 47, 78, 0.2) 97.06%);
-            backdrop-filter: blur(10px);
-            .dragonfly {
-                width: 100%;
-                background: linear-gradient(180deg, rgba(98, 153, 237, 0.5) 0%, rgba(31, 59, 107, 0.5) 52.1%, rgba(34, 59, 103, 0.5) 100%);
-                backdrop-filter: blur(30px);
-                border-radius: 40px;
-                padding: 24px;
-                overflow: hidden;
-                .butterfly {
-                    width: 100%;
-                    height: 48px;
-                    border-radius: 12px;
-                    display: flex;
-                    align-items: center;
-                    padding: 0 16px;
-                    background: rgba(121, 129, 164, 0.2);
-                    border: 1px solid transparent;
-                    &:nth-child(n + 2) {
-                        margin-top: 12px;
-                    }
-                    img {
-                        width: 24px;
-                        height: 24px;
-                    }
-                }
-                .magic {
-                    width: 100%;
-                    height: 44px;
-                }
-            }
+        .forget {
+            height: 100%;
+            float: right;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 12px;
+            display: flex;
+            align-items: center;
         }
     }
 }
