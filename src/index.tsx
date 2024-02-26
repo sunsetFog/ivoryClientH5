@@ -8,6 +8,8 @@ import '@root/global.css';
 import '@root/global.less';
 import '@root/global.scss';
 
+import 'antd-mobile/es/global';
+
 const rootElement = document.getElementById('root');
 const root = ReactDOM.createRoot(rootElement as HTMLDivElement);
 // root.unmount();手动卸载组件
