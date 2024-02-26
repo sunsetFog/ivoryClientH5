@@ -6,7 +6,7 @@ class ForgetPassword extends Component {
 
     render() {
         const {} = this.state;
-        return <section className={styles.ForgetPassword}>注册</section>;
+        return <section className={styles.ForgetPassword}>--忘记密码--</section>;
     }
 }
 
