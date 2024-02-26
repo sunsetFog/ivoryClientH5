@@ -3,7 +3,6 @@ import styles from './index.modules.scss';
 import { venus } from './constants';
 import withNavigation from '@/@energy/ivoryDesign/@higherOrder/withNavigation';
 import { Popup } from 'antd-mobile';
-import 'antd-mobile/es/global';
 
 class Register extends Component {
     state = {
