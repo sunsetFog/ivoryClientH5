@@ -14,58 +14,29 @@ class Register extends Component {
         checkActive: false,
         storeyActive: false,
     };
+    public componentDidMount() {
+        let nodesArr = document.getElementsByClassName('pumpkin');
+        // console.log('--nodesArr--', nodesArr);
+        for (let i = 0; i < nodesArr.length; i++) {
+            let item = nodesArr[i];
+            item.id = 'focusKey' + i;
+            let nodesList = item.getElementsByTagName('*');
+            for (let k = 0; k < nodesList.length; k++) {
+                let row = nodesList[k];
+                // console.log('--nodesList--', nodesList);
+                row.id = 'focusKey' + i;
+            }
+        }
+    }
     public intRef1 = createRef<HTMLInputElement>();
     public intRef2 = createRef<HTMLInputElement>();
     public intRef3 = createRef<HTMLInputElement>();
-    public focusWay1 = () => {
-        this.setState({
-            focusActive1: true,
-        });
-    };
-    public focusWay2 = (event) => {
-        console.log('--focusWay2--', event);
-        this.setState({
-            focusActive2: true,
-        });
-    };
-    public focusWay3 = () => {
-        this.setState({
-            focusActive3: true,
-        });
-    };
-    public blurWay1 = () => {
-        setTimeout(() => {
-            this.setState({
-                focusActive1: false,
-            });
-        }, 0);
-    };
-    public blurWay2 = () => {
-        console.log('--blurWay2--');
-        setTimeout(() => {
-            this.setState({
-                focusActive2: false,
-            });
-        }, 0);
-    };
-    public blurWay3 = () => {
-        setTimeout(() => {
-            this.setState({
-                focusActive3: false,
-            });
-        }, 0);
-    };
     public eyeWay1 = (value) => {
         console.log('--eyeWay1--');
         this.intRef2.current?.focus();
         this.setState({
             eyeActive1: value,
         });
-        setTimeout(() => {
-            this.setState({
-                focusActive2: true,
-            });
-        }, 0);
     };
     public eyeWay2 = (value) => {
         console.log('--eyeWay2--');
@@ -73,11 +44,6 @@ class Register extends Component {
         this.setState({
             eyeActive2: value,
         });
-        setTimeout(() => {
-            this.setState({
-                focusActive3: true,
-            });
-        }, 0);
     };
     public dragonfly = (index) => {
         const { navigate } = this.props as any;
@@ -103,7 +69,37 @@ class Register extends Component {
             checkActive: value,
         });
     };
-
+    public loginWay = (event) => {
+        console.log('--loginWay--', event.target.id);
+        if (event.target.id == 'focusKey0') {
+            this.intRef1.current.focus();
+            this.setState({
+                focusActive1: true,
+                focusActive2: false,
+                focusActive3: false,
+            });
+        } else if (event.target.id == 'focusKey1') {
+            this.intRef2.current.focus();
+            this.setState({
+                focusActive1: false,
+                focusActive2: true,
+                focusActive3: false,
+            });
+        } else if (event.target.id == 'focusKey2') {
+            this.intRef3.current.focus();
+            this.setState({
+                focusActive1: false,
+                focusActive2: false,
+                focusActive3: true,
+            });
+        } else {
+            this.setState({
+                focusActive1: false,
+                focusActive2: false,
+                focusActive3: false,
+            });
+        }
+    };
     render() {
         const {
             focusActive1,
@@ -115,11 +111,20 @@ class Register extends Component {
             storeyActive,
         } = this.state;
         return (
-            <section className={styles.Register}>
+            <section
+                className={styles.Register}
+                onClick={(event) => {
+                    this.loginWay(event);
+                }}
+            >
                 <div className={styles.logoBox}>
                     <img src={require('../login/img/logo.png')} />
                 </div>
-                <div className={`${styles.pumpkin} ${focusActive1 ? styles.focusBorder : ''}`}>
+                <div
+                    className={`${styles.pumpkin} pumpkin ${
+                        focusActive1 ? styles.focusBorder : ''
+                    }`}
+                >
                     <div className={styles.icon1}>
                         <img src={require('../login/img/user.png')} />
                     </div>
@@ -129,12 +134,11 @@ class Register extends Component {
                         name='username'
                         maxLength={16}
                         placeholder='用户名'
-                        onFocus={this.focusWay1}
-                        onBlur={this.blurWay1}
                     />
                     <div className={styles.icon2}>
                         {focusActive1 ? (
                             <img
+                                id='focusKey0'
                                 src={require('../login/img/icon_cancle.png')}
                                 onClick={this.empty}
                             />
@@ -144,7 +148,11 @@ class Register extends Component {
                     </div>
                 </div>
                 <div className={styles.autumn}></div>
-                <div className={`${styles.pumpkin} ${focusActive2 ? styles.focusBorder : ''}`}>
+                <div
+                    className={`${styles.pumpkin} pumpkin ${
+                        focusActive2 ? styles.focusBorder : ''
+                    }`}
+                >
                     <div className={styles.icon1}>
                         <img src={require('../login/img/password.png')} />
                     </div>
@@ -154,14 +162,11 @@ class Register extends Component {
                         name='password'
                         maxLength={16}
                         placeholder='密码'
-                        onFocus={(event) => {
-                            this.focusWay2(event);
-                        }}
-                        onBlur={this.blurWay2}
                     />
                     <div className={styles.icon2}>
                         {eyeActive1 && focusActive2 ? (
                             <img
+                                id='focusKey1'
                                 src={require('../login/img/icon_eyes_on.png')}
                                 onClick={() => {
                                     this.eyeWay1(false);
@@ -170,6 +175,7 @@ class Register extends Component {
                         ) : null}
                         {!eyeActive1 && focusActive2 ? (
                             <img
+                                id='focusKey1'
                                 src={require('../login/img/icon_eyes_off.png')}
                                 onClick={() => {
                                     this.eyeWay1(true);
@@ -179,7 +185,11 @@ class Register extends Component {
                     </div>
                 </div>
                 <div className={styles.autumn}></div>
-                <div className={`${styles.pumpkin} ${focusActive3 ? styles.focusBorder : ''}`}>
+                <div
+                    className={`${styles.pumpkin} pumpkin ${
+                        focusActive3 ? styles.focusBorder : ''
+                    }`}
+                >
                     <div className={styles.icon1}>
                         <img src={require('../login/img/password.png')} />
                     </div>
@@ -189,12 +199,11 @@ class Register extends Component {
                         name='password'
                         maxLength={16}
                         placeholder='确定密码'
-                        onFocus={this.focusWay3}
-                        onBlur={this.blurWay3}
                     />
                     <div className={styles.icon2}>
                         {eyeActive2 && focusActive3 ? (
                             <img
+                                id='focusKey2'
                                 src={require('../login/img/icon_eyes_on.png')}
                                 onClick={() => {
                                     this.eyeWay2(false);
@@ -203,6 +212,7 @@ class Register extends Component {
                         ) : null}
                         {!eyeActive2 && focusActive3 ? (
                             <img
+                                id='focusKey2'
                                 src={require('../login/img/icon_eyes_off.png')}
                                 onClick={() => {
                                     this.eyeWay2(true);
