@@ -3,6 +3,7 @@ import { useRoutes } from 'react-router-dom';
 // import Tab from '@/view/Tab';
 import routes from '@/router';
 import SwitchRouter from '@/router/switch';
+import themeStore from '@/store/mobx/themeStore';
 
 function App(props: any) {
     const [routerActive, setRouterActive] = useState(true);
@@ -17,6 +18,12 @@ function App(props: any) {
             const VConsole = require('vconsole/dist/vconsole.min.js');
             new VConsole({ maxLogNumber: 1000 });
         }
+        // themeStore.setTheme(sessionStorage.getItem('theme_skin') || 'light');
+        themeStore.setScreenAndRem();
+        window.addEventListener('resize', themeStore.setScreenAndRem);
+        return () => {
+            window.removeEventListener('resize', themeStore.setScreenAndRem);
+        };
         // console.log('--VConsole--', process.env.NODE_ENV);
     }, []);
     return (

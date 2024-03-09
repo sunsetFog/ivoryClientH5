@@ -1,0 +1,12 @@
+.ScreenUnit {
+    .scenery {
+        @include screen-vertical() {
+            width: 24.375rem;
+            height: 1rem;
+        }
+        @include screen-horizontal() {
+            width: 52.75rem;
+            height: 1rem;
+        }
+    }
+}
