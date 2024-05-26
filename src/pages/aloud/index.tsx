@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './index.module.scss';
 import 'antd-mobile/es/global';
 import { Picker } from 'antd-mobile';
+import { text } from './constants';
 
 // import 'antd-mobile/dist/antd-mobile.css';
 
@@ -15,7 +16,7 @@ function Aloud() {
     const [grape, setGrape] = useState<any>([]);
 
     const speak = () => {
-        const speech = new SpeechSynthesisUtterance('potato 土豆');
+        const speech = new SpeechSynthesisUtterance(text);
         // 设置声音
         speech.voice = selectedVoice;
         // 朗读
