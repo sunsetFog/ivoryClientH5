@@ -1,0 +1,267 @@
+.paging {
+    width: 100%;
+    min-height: 100%;
+    padding-bottom: 20px;
+    @include theme-light() {
+        background-color: rgb(231, 238, 246);
+    }
+    @include theme-night() {
+        background-color: #0d1014;
+    }
+    .banner {
+        width: 100%;
+        height: 192px;
+        background: #fff;
+    }
+    .cabbage {
+        width: 100%;
+        padding: 20px 12px;
+
+        ul {
+          width: 100%;
+
+          li {
+            display: flex;
+            flex-direction: column;
+            float: left;
+            width: calc((100% - 10px) / 2);
+            height: 314px;
+            padding: 18px 12px;
+            border-radius: 12px;
+            @include theme-light() {
+                background-image: url('./img/bg.png');
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+            //   background: linear-gradient(180deg, rgb(255 255 255 / 96%) 0%, #fff 100%);
+            //   border: 1px solid rgb(255 255 255 / 76%);
+            //   box-shadow: 0 -2px 4px 0 #e9f5ff inset;
+            }
+            @include theme-night() {
+                background-image: url('./img/bg_night.png');
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+            //   background: linear-gradient(
+            //       180deg,
+            //       rgb(255 255 255 / 4%) 0%,
+            //       rgb(255 255 255 / 0%) 55.95%
+            //     ),
+            //     rgb(255 255 255 / 4%);
+            //   border: 1px solid rgb(255 255 255 / 10%);
+            }
+
+            .cartoon {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 100%;
+              height: 120px;
+
+              img {
+                width: 120px;
+                height: 100%;
+              }
+            }
+
+            .bean {
+              display: flex;
+              justify-content: center;
+              width: 100%;
+              padding: 8px 0;
+              font-size: 14px;
+              @include theme-light() {
+                color: #31455a;
+              }
+              @include theme-night() {
+                color: #fff;
+              }
+            }
+
+            .spring {
+              display: flex;
+              justify-content: center;
+              width: 100%;
+              font-size: 14px;
+              font-style: normal;
+              font-weight: 500;
+              @include theme-light() {
+                color: #6ac4ff;
+              }
+              @include theme-night() {
+                color: #97d6ff;
+              }
+            }
+
+            .fabulous {
+              display: flex;
+              justify-content: center;
+              width: 100%;
+              margin: 12px 0 12px;
+
+              button {
+                width: 112px;
+                height: 36px;
+                font-size: 14px;
+                color: #fff;
+                cursor: pointer;
+                border: none;
+                outline: none;
+                @include theme-light() {
+                  background: radial-gradient(
+                    107.94% 113.71% at 50% -13.71%,
+                    #8bcfff 0%,
+                    #6cc4ff 44.29%,
+                    #49b3ff 89.63%
+                  );
+                  border: 0.5px solid rgb(255 255 255 / 24%);
+                  border-radius: 24px;
+                  box-shadow: 0 -2.561px 5.121px 0 rgb(171 210 253 / 36%) inset;
+                }
+                @include theme-night() {
+                  background: linear-gradient(0deg, rgb(0 0 0 / 15%) 0%, rgb(0 0 0 / 15%) 100%),
+                    radial-gradient(
+                      107.94% 113.71% at 50% -13.71%,
+                      #8bcfff 0%,
+                      #6cc4ff 44.29%,
+                      #49b3ff 89.63%
+                    );
+                  border: 0.5px solid rgb(255 255 255 / 24%);
+                  border-radius: 20px;
+                  box-shadow: 0 -2.561px 5.121px 0 rgb(171 210 253 / 36%) inset;
+                }
+              }
+            }
+
+            .butterfly {
+              width: 100%;
+              height: 12px;
+            }
+
+            .dragonfly {
+              width: 100%;
+              font-size: 12px;
+
+              label {
+                float: left;
+                @include theme-light() {
+                  color: #98a2ac;
+                }
+                @include theme-night() {
+                  color: #fff6;
+                }
+              }
+
+              span {
+                float: right;
+                @include theme-light() {
+                  color: #6ac4ff;
+                }
+                @include theme-night() {
+                  color: #97d6ff;
+                }
+              }
+            }
+          }
+
+          li:nth-of-type(odd) {
+            margin-right: 10px;
+          }
+
+          li:nth-child(n + 3) {
+            margin-top: 10px;
+          }
+        }
+    }
+    .undercurrent {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin: 0px 0 12px;
+
+        main {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: fit-content;
+          padding: 4px 0;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+          @include theme-light() {
+            color: #356280;
+          }
+          @include theme-night() {
+            color: #fff;
+          }
+
+          .box1 {
+            width: 14px;
+            height: 14px;
+            margin-left: 2px;
+            @include theme-light() {
+              background: url('./img/icon_arrow_down.png');
+              background-repeat: no-repeat;
+              background-size: 100% 100%;
+            }
+            @include theme-night() {
+              background: url('./img/icon_arrow_down_night.png');
+              background-repeat: no-repeat;
+              background-size: 100% 100%;
+            }
+          }
+
+          .box2 {
+            width: 14px;
+            height: 14px;
+            margin-left: 2px;
+            @include theme-light() {
+              background: url('./img/icon_arrow_up.png');
+              background-repeat: no-repeat;
+              background-size: 100% 100%;
+            }
+            @include theme-night() {
+              background: url('./img/icon_arrow_up_night.png');
+              background-repeat: no-repeat;
+              background-size: 100% 100%;
+            }
+          }
+        }
+    }
+    .ruleBox {
+        width: 100%;
+        padding: 20px 10px 0;
+
+        header {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          height: 24px;
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 900;
+          @include theme-light() {
+            color: #31455a;
+            background: url('./img/activit_title.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+          }
+          @include theme-night() {
+            color: #fff;
+            background: url('./img/activit_title_night.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+          }
+        }
+
+        .beautiful {
+            @include card-bg();
+            width: 100%;
+            min-height: 200px;
+            margin-top: 20px;
+            border-radius: 20px;
+            // background: linear-gradient(180deg, #FDFEFF 13.02%, #FDFEFF 86.98%, #EDF7FF 100%);
+            // box-shadow: 0px -2px 0px 0px #93B6D3 inset, 0px -3px 2px 0px #AECCE4 inset, 0px 1px 1px 0px #FFF inset, 0px 4px 10px 0px rgba(125, 168, 207, 0.35);
+        }
+    }
+}

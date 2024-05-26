@@ -18,7 +18,7 @@ function App(props: any) {
             const VConsole = require('vconsole/dist/vconsole.min.js');
             new VConsole({ maxLogNumber: 1000 });
         }
-        // themeStore.setTheme(sessionStorage.getItem('theme_skin') || 'light');
+        themeStore.setTheme(sessionStorage.getItem('theme_skin') || 'light');
         themeStore.setScreenAndRem();
         window.addEventListener('resize', themeStore.setScreenAndRem);
         return () => {
