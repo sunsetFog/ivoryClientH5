@@ -1,0 +1,43 @@
+.pullToRefresh {
+    width: 100%;
+    position: relative;
+
+    .loadingBox {
+        width: 100%;
+        padding: 12px 0;
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+
+        div {
+            width: 20px;
+            height: 20px;
+            // border: 2px solid #333;
+            // border-radius: 50%;
+            // border-top-color: #ccc;
+            background-image: url('../../img/loading.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            animation: spin 0.6s linear infinite;
+        }
+    }
+
+
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .contentBox {
+        position: relative;
+        z-index: 2;
+    }
+}
