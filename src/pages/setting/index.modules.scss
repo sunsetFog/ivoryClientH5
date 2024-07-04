@@ -1,0 +1,63 @@
+.setting {
+    width: 100%;
+    min-height: 100%;
+    background-color: rgb(231, 238, 246);
+    padding: 15px 0;
+    .cauliflower {
+        width: calc(100% - 30px);
+        margin: 0 15px 0 15px;
+        padding: 0 16px;
+        @include card-bg();
+        &:nth-child(n + 2) {
+            margin-top: 10px;
+        }
+        .exit {
+            width: 100%;
+            height: 48px;
+            color: #31455a;
+            font-size: 14px;
+            text-align: center;
+            line-height: 45px;
+            position: relative;
+            z-index: 2;
+        }
+        ul {
+            width: 100%;
+            padding: 0 0 7.5px 0;
+            position: relative;
+            z-index: 2;
+            li {
+                height: 48px;
+                &:nth-child(n + 2) {
+                    border-top: .5px solid #d6dade;
+                }
+                .leeks {
+                    height: 100%;
+                    color: #31455a;
+                    font-size: 14px;
+                    float: left;
+                    display: flex;
+                    align-items: center;
+                }
+                .squash {
+                    height: 100%;
+                    color: #98a2ac;
+                    font-size: 12px;
+                    float: right;
+                    display: flex;
+                    align-items: center;
+                }
+                .carrots {
+                    width: 12px;
+                    height: 100%;
+                    background-image: url('./img/right.png');
+                    background-size: 12px 12px;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    float: right;
+                    margin-left: 5px;
+                }
+            }
+        }
+    }
+}

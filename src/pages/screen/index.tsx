@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import styles from './index.modules.scss';
-
+// 横竖屏幕
 class Screen extends Component {
     state = {};
 
