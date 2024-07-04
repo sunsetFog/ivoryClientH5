@@ -69,7 +69,9 @@ module.exports = [
     },
     {
         test: /\.css$/,
-        use: cssLoaders(1)
+        // 导致antd-mobile用不了
+        // use: cssLoaders(1)
+        use: ['style-loader', 'css-loader']
     },
     {
         test: /\.less$/,

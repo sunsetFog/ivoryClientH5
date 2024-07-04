@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 // styles
 import styles from './index.module.scss';
-import 'antd-mobile/es/global';
 import { Picker } from 'antd-mobile';
 import { text } from './constants';
-
-// import 'antd-mobile/dist/antd-mobile.css';
 
 function Aloud() {
     const [voice, setVoice] = useState<any>();
