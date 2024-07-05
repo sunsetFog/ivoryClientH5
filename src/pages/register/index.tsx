@@ -232,7 +232,8 @@ class Register extends Component {
                         />
                     ) : (
                         <img
-                            src={require('../login/img/uncheck.png')}
+                            style={{ opacity: 0.5 }}
+                            src={require('../login/img/ischeck.png')}
                             onClick={() => {
                                 this.checkWay(true);
                             }}

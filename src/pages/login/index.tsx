@@ -157,6 +157,43 @@ class Login extends Component {
                     </div>
                 </div>
                 <div className={styles.autumn}></div>
+                <div
+                    className={`${styles.pumpkin} pumpkin ${
+                        focusActive2 ? styles.focusBorder : ''
+                    }`}
+                >
+                    <div className={styles.icon1}>
+                        <img src={require('./img/code.png')} />
+                    </div>
+                    <input
+                        ref={this.intRef2}
+                        type={eyeActive ? 'text' : 'password'}
+                        name='password'
+                        maxLength={16}
+                        placeholder='请输入验证码'
+                    />
+                    <div className={styles.icon2}>
+                        {eyeActive && focusActive2 ? (
+                            <img
+                                id='focusKey1'
+                                src={require('./img/icon_eyes_on.png')}
+                                onClick={() => {
+                                    this.eyeWay(false);
+                                }}
+                            />
+                        ) : null}
+                        {!eyeActive && focusActive2 ? (
+                            <img
+                                id='focusKey1'
+                                src={require('./img/icon_eyes_off.png')}
+                                onClick={() => {
+                                    this.eyeWay(true);
+                                }}
+                            />
+                        ) : null}
+                    </div>
+                </div>
+                <div className={styles.autumn}></div>
                 <div className={styles.scenery}>
                     <div className={styles.remember}>
                         {checkActive ? (
@@ -168,7 +205,8 @@ class Login extends Component {
                             />
                         ) : (
                             <img
-                                src={require('./img/uncheck.png')}
+                                style={{ opacity: 0.5 }}
+                                src={require('./img/ischeck.png')}
                                 onClick={() => {
                                     this.checkWay(true);
                                 }}
