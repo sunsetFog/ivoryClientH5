@@ -38,7 +38,7 @@ function CommonUse() {
         const obj = allList.find((it: any) => it.id === item.id);
         const templist = [...oftenList, obj];
         setOftenOfList(templist);
-
+        // 只是改active
         setAllOfList(
             allList.map((it) => {
                 if (it.id === item.id) {
@@ -85,15 +85,26 @@ function CommonUse() {
             //   router.push({ pathname: item.url, query: item.query });
         }
     };
+    // 上面已有arrayMove方法，实现就是这样的
+    const arrayMove2 = (arr, fromIndex, toIndex) => {
+        const newArr = [...arr];
+        // 删除元素，并返回一个包含被删除元素的新数组
+        const [movedItem] = newArr.splice(fromIndex, 1);
+        // 0不删，在toIndex下标后插入的新元素
+        newArr.splice(toIndex, 0, movedItem);
+        return newArr;
+    };
 
-    // 拖拽
+    // 拖拽抬起事件
     const onDragEnd = (props: any) => {
         const { active, over } = props;
         if (over?.id) {
-            const activeIndex = idList.current.findIndex((item: any) => item === active.id);
-            const overIndex = idList.current.findIndex((item: any) => item === over.id);
-            setOftenOfList((items: any) => arrayMove(items, activeIndex, overIndex));
-            idList.current = arrayMove(idList.current, activeIndex, overIndex);
+            const fromIndex = idList.current.findIndex((item: any) => item === active.id);
+            const toIndex = idList.current.findIndex((item: any) => item === over.id);
+            // 改变数组，实现移动
+            setOftenOfList((itself: any) => arrayMove2(itself, fromIndex, toIndex));
+            // 存id的数组随移动变
+            idList.current = arrayMove2(idList.current, fromIndex, toIndex);
         }
     };
 
@@ -106,6 +117,7 @@ function CommonUse() {
         idList.current = zucchini.split(',') || [];
 
         let cartoon = JSON.parse(JSON.stringify(allFunctions));
+        // 加active字段
         for (let i = 0; i < cartoon.length; i++) {
             let item: any = cartoon[i];
             item.active = idList.current.indexOf(item.id) != -1;
