@@ -1,0 +1,166 @@
+
+.commonUse {
+    width: 100%;
+    header {
+        width: 100%;
+        height: 44px;
+        padding: 0 14px;
+        .leftBox {
+            width: 100px;
+            height: 100%;
+            font-size: 16px;
+            font-weight: 400;
+            color: #2f3035;
+            float: left;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            .juice {
+                width: 8px;
+                height: 14px;
+                float: left;
+                background-image: url('./img/icon_arrow_left.png');
+                background-size: 100% 14px;
+                background-repeat: no-repeat;
+                background-position: center center;
+            }
+            .lettuce {
+                width: fit-content;
+                height: fit-content;
+                color: #5e606a;
+                font-size: 16px;
+                font-weight: 400;
+            }
+        }
+        .centerBox {
+            width: calc(100% - 200px);
+            height: 100%;
+            color: #2f3035;
+            font-size: 18px;
+            font-weight: 500;
+            float: left;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .rightBox {
+            width: 100px;
+            height: 100%;
+            font-size: 16px;
+            font-weight: 400;
+            color: #5e606a;
+            float: right;
+            display: flex;
+            justify-content: right;
+            align-items: center;
+            .lettuce {
+                width: fit-content;
+                height: fit-content;
+                color: #5e606a;
+                font-size: 16px;
+                font-weight: 400;
+            }
+            .garlic {
+                width: 48px;
+                height: 28px;
+                font-size: 14px;
+                background: #1677ff;
+                border-radius: 4px;
+                color: #fff;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        .buttonView {
+            height: 28px;
+            padding: 0 10px;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+        }
+    }
+    main {
+        padding: 16px 14px 0;
+        background: #fff;
+
+        label {
+            width: 100%;
+            font-size: 14px;
+            font-weight: 600;
+            color: #2f3035;
+        }
+
+        .contentBox {
+            width: 100%;
+            padding: 16px 0;
+            margin-bottom: 16px;
+
+            ul {
+                display: flex;
+                flex-wrap: wrap;
+                width: 100%;
+                margin-bottom: 16px;
+
+                &:last-of-type {
+                    margin-bottom: 0;
+                }
+
+                li {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    width: 25%;
+                    height: 72px;
+
+                    div {
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 48px;
+                        height: 48px;
+                        border-radius: 16px;
+
+                        @include platform-bd {
+                            background: rgb(23 156 255 / 8%);
+                        }
+
+                        @include platform-tb {
+                            background: rgb(206 168 130 / 8%);
+                        }
+
+                        .addImg {
+                            position: absolute;
+                            top: -6px;
+                            right: -8px;
+                            width: 20px;
+                            height: 20px;
+                        }
+
+                        img {
+                            width: 40px;
+                            height: 40px;
+                        }
+                    }
+
+                    p {
+                        width: 100%;
+                        margin-top: 4px;
+                        font-size: 14px;
+                        font-weight: 400;
+                        color: #757884;
+                        text-align: center;
+                    }
+                }
+
+                li:nth-child(n + 5) {
+                    margin-top: 16px;
+                }
+            }
+        }
+    }
+}

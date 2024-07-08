@@ -1,0 +1,61 @@
+.onions {
+    width: 100%;
+    padding: 10px 15px;
+    .carrots {
+        width: 100%;
+        font-size: 16px;
+        font-weight: 600;
+        color: #2f3035;
+        margin-bottom: 16px;
+    }
+    .mushrooms {
+        width: 100%;
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: left;
+            width: 100%;
+
+            li {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: space-between;
+              width: 80px;
+              height: 72px;
+              padding: 0 10px;
+              margin-top: 16px;
+
+              > div {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 48px;
+                height: 48px;
+                border-radius: 16px;
+                background: rgb(23 156 255 / 8%);
+                @include platform-tb {
+                  background: rgb(206 168 130 / 8%);
+                }
+              }
+
+              p {
+                position: relative;
+                width: 100%;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 20px;
+                color: #757884;
+                text-align: center;
+              }
+            }
+            li:nth-child(n) {
+                margin-left: calc((100% - 80px * 4) / 3 );
+            }
+            // 选择序号为 1, 5, 9, 13, 等等的元素，即是余数n % 4 == 1
+            li:nth-child(4n + 1) {
+                margin-left: unset;
+            }
+          }
+    }
+}
