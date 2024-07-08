@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import styles from './index.module.scss';
 import { allFunctions } from './constant';
+import { useNavigate } from 'react-router-dom';
 
 const CommonFunctions = () => {
+    const navigate = useNavigate();
     const [menuList, setMenuOfList] = useState([]);
+    const goMore = () => {
+        navigate('/cauliflower/commonUse');
+    };
     useEffect(() => {
         let zucchini = sessionStorage.getItem('avocados');
         if (!zucchini) {
@@ -27,7 +32,11 @@ const CommonFunctions = () => {
                             <p>{item.label}</p>
                         </li>
                     ))}
-                    <li>
+                    <li
+                        onClick={() => {
+                            goMore();
+                        }}
+                    >
                         <div>
                             <img
                                 src={require('./img/icon_add.png')}

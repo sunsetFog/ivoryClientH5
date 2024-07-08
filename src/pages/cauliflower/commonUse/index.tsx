@@ -6,8 +6,10 @@ import { useRequest } from 'ahooks';
 import { DndContext, useSensor, useSensors, TouchSensor } from '@dnd-kit/core';
 import { arrayMove, SortableContext } from '@dnd-kit/sortable';
 import { allFunctions } from '../constant';
+import { useNavigate } from 'react-router-dom';
 
-function CommonUse() {
+function CommonUse(props: any) {
+    const navigate = useNavigate();
     const [oftenList, setOftenOfList] = useState<any>([]);
     const [allList, setAllOfList] = useState<any[]>([]);
     const [editActive, setEditActive] = useState(false);
@@ -107,6 +109,9 @@ function CommonUse() {
             idList.current = arrayMove2(idList.current, fromIndex, toIndex);
         }
     };
+    const goBack = () => {
+        navigate('/cauliflower');
+    };
 
     useEffect(() => {
         // 查询接口只返回1,2,3  保存接口也是传1,2,3
@@ -144,7 +149,12 @@ function CommonUse() {
                             取消
                         </button>
                     ) : (
-                        <div className={styles.juice}></div>
+                        <div
+                            className={styles.juice}
+                            onClick={() => {
+                                goBack();
+                            }}
+                        ></div>
                     )}
                 </div>
                 <div className={styles.centerBox}>常用功能</div>
