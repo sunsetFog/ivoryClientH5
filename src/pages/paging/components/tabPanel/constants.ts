@@ -1,6 +1,6 @@
 export let tabList1 = [
     {
-        title: '体育',
+        title: '修仙',
         key: 2,
     },
     {
@@ -8,7 +8,7 @@ export let tabList1 = [
         key: 3,
     },
     {
-        title: '棋牌',
+        title: '建模',
         key: 4,
     },
     {
