@@ -7,7 +7,7 @@ import TabPanel from './components/tabPanel';
 /*
 查看更多&收起
 */
-function paging() {
+function exchange() {
     const [giftList2, setGiftOfList2] = useState(giftList1);
     const [pageNum, setPageOfNum] = useState(1);
     const [totalPage, setTotal] = useState(Math.ceil(giftList1.length / 4));
@@ -26,7 +26,7 @@ function paging() {
         setPageOfNum(1);
     };
     return (
-        <section className={styles.paging}>
+        <section className={styles.exchange}>
             <HeaderUnit></HeaderUnit>
             <div className={styles.banner}></div>
             <TabPanel></TabPanel>
@@ -90,4 +90,4 @@ function paging() {
     );
 }
 
-export default paging;
+export default exchange;
