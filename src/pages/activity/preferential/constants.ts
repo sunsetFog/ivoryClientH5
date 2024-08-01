@@ -6,7 +6,7 @@ export const bread = [
     },
     {
         title: '元宝',
-        path: '',
+        path: '/activity/ingots',
     },
     {
         title: '转盘抽奖',

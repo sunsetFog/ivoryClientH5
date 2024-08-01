@@ -26,6 +26,9 @@ const Tab2Unit = function (props) {
         {
             manual: true,
             onSuccess: (result: any) => {
+                result = {
+                    message: 'OKK',
+                };
                 detailWay();
                 Toast.show({
                     icon: 'success',
@@ -167,7 +170,7 @@ const Tab2Unit = function (props) {
             <div style={{ clear: 'both' }}></div>
             {activeKey == 0 && (
                 <section>
-                    <TitleBox titleImg='title_03' recordType='tab03_1'>
+                    <TitleBox titleImg='title_03' recordType='icon2_1'>
                         <ActivityDescription illustrate={formatCon[6]}></ActivityDescription>
                         <div className={styles.leiji}>
                             <p>单日累计有效存款/存款元宝</p>
@@ -179,9 +182,9 @@ const Tab2Unit = function (props) {
                                         <li
                                             key={index}
                                             className={
-                                                !item.IsApplied &&
-                                                !item.IsHighLight &&
-                                                styles.signOpacity
+                                                !item.IsApplied && !item.IsHighLight
+                                                    ? styles.signOpacity
+                                                    : ''
                                             }
                                         >
                                             <p className={`${tab1sty.pTitle} ${styles.bijiao}`}>
@@ -234,7 +237,7 @@ const Tab2Unit = function (props) {
 
             {activeKey == 1 && (
                 <section>
-                    <TitleBox titleImg='title_04' recordType='tab03_2'>
+                    <TitleBox titleImg='title_04' recordType='icon2_2'>
                         <ActivityDescription
                             illustrate={formatCon[8]}
                             isShow='3'

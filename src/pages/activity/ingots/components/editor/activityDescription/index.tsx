@@ -50,7 +50,17 @@ const activityDescription = function (props) {
                     return (
                         <div
                             key={index}
-                            className={styles[`noticeItem${index + 1}`]}
+                            className={
+                                isShow == 'all'
+                                    ? styles[`noticeItem${index + 1}`]
+                                    : isShow == '1'
+                                    ? styles.oneItem1
+                                    : isShow == '1a'
+                                    ? styles.oneItem2
+                                    : isShow == '3'
+                                    ? styles.noticeItem3
+                                    : ''
+                            }
                             dangerouslySetInnerHTML={{ __html: fixedXssContent(item) }}
                         ></div>
                     );

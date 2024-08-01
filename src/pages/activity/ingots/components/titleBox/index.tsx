@@ -16,7 +16,7 @@ const titleBox = function (props) {
                         dangerouslySetInnerHTML={{ __html: fixedXssContent(titleTime) }}
                     ></div>
                 )}
-                {recordType == 'tab01' && (
+                {recordType == 'icon4_1' && (
                     <RecordModal recordType={recordType}>
                         <img
                             className={styles.recordImg}
@@ -24,12 +24,12 @@ const titleBox = function (props) {
                         ></img>
                     </RecordModal>
                 )}
-                {(recordType == 'tab02_1' ||
-                    recordType == 'tab02_2' ||
-                    recordType == 'tab03_1' ||
-                    recordType == 'tab03_2' ||
-                    recordType == 'tab04_1' ||
-                    recordType == 'tab04_2') && (
+                {(recordType == 'icon1_1' ||
+                    recordType == 'icon1_2' ||
+                    recordType == 'icon2_1' ||
+                    recordType == 'icon2_2' ||
+                    recordType == 'icon3_1' ||
+                    recordType == 'icon3_2') && (
                     <RecordModal recordType={recordType}>
                         <img
                             className={styles.recordImg}

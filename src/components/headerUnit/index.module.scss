@@ -45,11 +45,16 @@
             flex: 1;
             height: 100%;
             padding: 0 12px;
-            color: #31455a;
             font-size: 18px;
             display: flex;
             justify-content: center;
             align-items: center;
+            @include theme-light() {
+                color: #31455a;
+            }
+            @include theme-night() {
+                color: #fff;
+            }
         }
     }
 }

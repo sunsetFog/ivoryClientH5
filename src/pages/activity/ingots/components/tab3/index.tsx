@@ -162,6 +162,9 @@ const Tab3Unit = function (props) {
     const { run: newCallRun } = useRequest((sendingData = {}) => newCallTab3(sendingData), {
         manual: true,
         onSuccess: (result: any) => {
+            result = {
+                data: 'OKK',
+            };
             newWay();
             Toast.show({
                 icon: 'success',
@@ -172,6 +175,9 @@ const Tab3Unit = function (props) {
     const { run: oldReturnRun } = useRequest((sendingData = {}) => oldReturnTab3(sendingData), {
         manual: true,
         onSuccess: (result: any) => {
+            result = {
+                data: 'OKK',
+            };
             oldWay();
             Toast.show({
                 icon: 'success',
@@ -210,7 +216,7 @@ const Tab3Unit = function (props) {
     const { formatCon } = props;
     return (
         <section className={styles.Tab3Unit}>
-            <TitleBox titleImg='title_05' recordType='tab04_1'>
+            <TitleBox titleImg='title_05' recordType='icon3_1'>
                 <ActivityDescription illustrate={formatCon[12]}></ActivityDescription>
                 <div className={styles.pageBox} style={{ marginTop: '9.984px' }}>
                     <button className={styles.titleCheck}></button>
@@ -224,7 +230,7 @@ const Tab3Unit = function (props) {
                             return (
                                 <li
                                     className={
-                                        !item.isApplied && !item.isToday && tab1sty.signOpacity
+                                        !item.isApplied && !item.isToday ? tab1sty.signOpacity : ''
                                     }
                                     key={index}
                                 >
@@ -305,7 +311,7 @@ const Tab3Unit = function (props) {
                     </CopyToClipboard>
                 </div>
             </TitleBox>
-            <TitleBox titleImg='headline_05' recordType='tab04_2'>
+            <TitleBox titleImg='headline_05' recordType='icon3_2'>
                 <ActivityDescription illustrate={formatCon[13]} isShow='3'></ActivityDescription>
                 <div className={styles.pageBox} style={{ marginTop: '9.984px' }}>
                     <button className={styles.titleDate}></button>
@@ -319,7 +325,7 @@ const Tab3Unit = function (props) {
                             return (
                                 <li
                                     className={
-                                        !item.isApplied && !item.isToday && tab1sty.signOpacity
+                                        !item.isApplied && !item.isToday ? tab1sty.signOpacity : ''
                                     }
                                     key={index}
                                 >

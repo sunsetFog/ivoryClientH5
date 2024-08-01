@@ -10,6 +10,7 @@ import Rules from '../editor/rules';
 import TitleBox from '../titleBox';
 import { formatTime2 } from '../../utils';
 // import { useBindPhone } from '@/utils/hooks/useBindPhone';
+import SignInModal from './signInModal';
 const Tab1Unit = function (props) {
     const [state, setState] = useSetState({
         signRewardList: [],
@@ -28,6 +29,9 @@ const Tab1Unit = function (props) {
     const { run: dayApplyRun } = useRequest((sendingData = {}) => dayApplyTab1(sendingData), {
         manual: true,
         onSuccess: (result: any) => {
+            result = {
+                message: 'OKK',
+            };
             rewardInfo(true);
             Toast.show({
                 icon: 'success',
@@ -241,6 +245,9 @@ const Tab1Unit = function (props) {
     const { run: timeApplyRun } = useRequest((sendingData = {}) => timeApplyTab1(sendingData), {
         manual: true,
         onSuccess: (result: any) => {
+            result = {
+                message: 'OKK',
+            };
             Toast.show({
                 icon: 'success',
                 content: result.message,
@@ -322,7 +329,7 @@ const Tab1Unit = function (props) {
     const { formatCon } = props;
     return (
         <section className={styles.Tab1Unit}>
-            <TitleBox titleImg='title_02' recordType='tab02_1'>
+            <TitleBox titleImg='title_02' recordType='icon1_1'>
                 <ActivityDescription illustrate={formatCon[3]}></ActivityDescription>
                 <div className={styles.signInBox}>
                     <ul>
@@ -330,7 +337,7 @@ const Tab1Unit = function (props) {
                             return (
                                 <li
                                     className={
-                                        !item.isApplied && !item.isToday && styles.signOpacity
+                                        !item.isApplied && !item.isToday ? styles.signOpacity : ''
                                     }
                                     key={index}
                                 >
@@ -397,7 +404,7 @@ const Tab1Unit = function (props) {
                     )}
                 </div>
             </TitleBox>
-            <TitleBox titleImg='headline_03' recordType='tab02_2'>
+            <TitleBox titleImg='headline_03' recordType='icon1_2'>
                 <ActivityDescription illustrate={formatCon[4]} isShow='3'></ActivityDescription>
                 <div className={styles.pageBox}>
                     <button className={styles.titleTime}></button>
@@ -408,7 +415,7 @@ const Tab1Unit = function (props) {
                             return (
                                 <li
                                     className={
-                                        !item.isApplied && !item.highLight && styles.signOpacity
+                                        !item.isApplied && !item.highLight ? styles.signOpacity : ''
                                     }
                                     key={index}
                                 >
@@ -444,6 +451,7 @@ const Tab1Unit = function (props) {
             <TitleBox titleImg='headline_02'>
                 <Rules illustrate={formatCon[5]}></Rules>
             </TitleBox>
+            <SignInModal></SignInModal>
         </section>
     );
 };

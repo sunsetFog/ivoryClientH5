@@ -30,6 +30,11 @@ const Tab4Unit = function (props) {
     const { run: exchangeRun } = useRequest((sendingData = {}) => giftExchangeTab4(sendingData), {
         manual: true,
         onSuccess: (result: any) => {
+            result = {
+                data: {
+                    message: 'OKK',
+                },
+            };
             pointStatisticsWay();
             Toast.show({
                 icon: 'success',
@@ -184,7 +189,7 @@ const Tab4Unit = function (props) {
     const { formatCon } = props;
     return (
         <section className={styles.Tab4Unit}>
-            <TitleBox titleImg='title_01' titleTime={formatCon[0]} recordType='tab01'>
+            <TitleBox titleImg='title_01' titleTime={formatCon[0]} recordType='icon4_1'>
                 <ActivityDescription illustrate={formatCon[1]} isShow='1'></ActivityDescription>
             </TitleBox>
             <div className={styles.amountBox}>
@@ -194,7 +199,7 @@ const Tab4Unit = function (props) {
                 <div className={styles.caijin}>{amountObj.totalAmount}元</div>
             </div>
             <div className={styles.exchange}>
-                <ul className={goodsList.length == 1 && styles.centerBT}>
+                <ul className={goodsList.length == 1 ? styles.centerBT : ''}>
                     {goodsList.map((item, index) => {
                         return (
                             <li key={index}>
@@ -230,12 +235,15 @@ const Tab4Unit = function (props) {
             </div>
             {!(totalPage == 0 || totalPage == 1) && (
                 <div className={`${styles.pageBox}`}>
-                    <button onClick={previousPage} className={pageNum == 1 && styles.signOpacity}>
+                    <button
+                        onClick={previousPage}
+                        className={pageNum == 1 ? styles.signOpacity : ''}
+                    >
                         <span>上一页</span>
                     </button>
                     <button
                         onClick={nextPage}
-                        className={pageNum == totalPage && styles.signOpacity}
+                        className={pageNum == totalPage ? styles.signOpacity : ''}
                     >
                         <span>下一页</span>
                     </button>
@@ -247,7 +255,7 @@ const Tab4Unit = function (props) {
                 </div>
             )}
             <div className={`${styles.exchange} ${styles.newGift}`}>
-                <ul className={newList.length == 1 && styles.centerBT}>
+                <ul className={newList.length == 1 ? styles.centerBT : ''}>
                     {newList.map((item, index) => {
                         return (
                             <li key={index}>

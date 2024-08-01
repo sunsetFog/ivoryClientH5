@@ -17,19 +17,18 @@ const recordModal = function (props) {
         arrList: [],
         sDateVisible: false,
     });
-    const bodyRef = useRef() as any;
-    useEffect(() => {
-        bodyRef.current = document.body;
-    });
     // 接口
     const { run: betHistoryRun } = useRequest((sendingData = {}) => betHistoryModal(sendingData), {
         manual: true,
         onSuccess: (result: any) => {
+            result = {
+                data: [],
+            };
             const { recordType } = props;
             let arrBox = JSON.parse(JSON.stringify(result.data || []));
             for (let i = 0; i < arrBox.length; i++) {
                 let item = arrBox[i];
-                if (recordType == 'tab03_2') {
+                if (recordType == 'icon2_2') {
                     item.remark = `恭喜您${item.groupName}领取“<span>${item.point}</span>元宝”`;
                 } else {
                     if (item.extraPoint == 0) {
@@ -49,17 +48,22 @@ const recordModal = function (props) {
         {
             manual: true,
             onSuccess: (result: any) => {
+                result = {
+                    data: {
+                        list: [],
+                    },
+                };
                 const { recordType } = props;
                 let arrBox = JSON.parse(JSON.stringify(result.data.list || []));
                 for (let i = 0; i < arrBox.length; i++) {
                     let item = arrBox[i];
-                    if (recordType == 'tab01') {
+                    if (recordType == 'icon4_1') {
                         if (item.giftName) {
                             item.remark = `恭喜您兑换<span>${item.giftName}</span>，消耗元宝${item.point}`;
                         } else {
                             item.remark = `恭喜您兑换<span>${item.giftAmount}元彩金</span>，消耗元宝${item.point}`;
                         }
-                    } else if (recordType == 'tab04_1' || recordType == 'tab04_2') {
+                    } else if (recordType == 'icon3_1' || recordType == 'icon3_2') {
                         if (item.extraPoint == 0) {
                             item.remark = `恭喜您领取 “<span>${item.point}</span>元宝”`;
                         } else {
@@ -98,14 +102,14 @@ const recordModal = function (props) {
     };
     const showWay0 = () => {
         searchWay();
-        bodyRef.current.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
         setState({
             showModal: true,
         });
     };
     const closeWay0 = (event) => {
         if (event.target === event.currentTarget) {
-            bodyRef.current.style.overflow = '';
+            document.body.style.overflow = '';
             setState({
                 showModal: false,
             });
@@ -123,30 +127,30 @@ const recordModal = function (props) {
     };
     const searchWay = () => {
         const { recordType } = props;
-        if (recordType == 'tab01' || recordType == 'tab04_1' || recordType == 'tab04_2') {
+        if (recordType == 'icon4_1' || recordType == 'icon3_1' || recordType == 'icon3_2') {
             let typeNum = 0;
-            if (recordType == 'tab01') {
+            if (recordType == 'icon4_1') {
                 typeNum = 10;
-            } else if (recordType == 'tab04_1') {
+            } else if (recordType == 'icon3_1') {
                 typeNum = 5;
-            } else if (recordType == 'tab04_2') {
+            } else if (recordType == 'icon3_2') {
                 typeNum = 7;
             }
             changeRecordWay(typeNum);
         } else if (
-            recordType == 'tab02_1' ||
-            recordType == 'tab02_2' ||
-            recordType == 'tab03_1' ||
-            recordType == 'tab03_2'
+            recordType == 'icon1_1' ||
+            recordType == 'icon1_2' ||
+            recordType == 'icon2_1' ||
+            recordType == 'icon2_2'
         ) {
             let typeNum = 0;
-            if (recordType == 'tab02_1') {
+            if (recordType == 'icon1_1') {
                 typeNum = 1;
-            } else if (recordType == 'tab02_2') {
+            } else if (recordType == 'icon1_2') {
                 typeNum = 2;
-            } else if (recordType == 'tab03_1') {
+            } else if (recordType == 'icon2_1') {
                 typeNum = 3;
-            } else if (recordType == 'tab03_2') {
+            } else if (recordType == 'icon2_2') {
                 typeNum = 4;
             }
             betHistoryWay(typeNum);
@@ -155,19 +159,19 @@ const recordModal = function (props) {
     const { showModal, startTime, arrList, sDateVisible } = state;
     const { children, recordType } = props;
     let titleImg = 'headline_06';
-    if (recordType == 'tab01') {
+    if (recordType == 'icon4_1') {
         titleImg = 'headline_06';
-    } else if (recordType == 'tab02_1') {
+    } else if (recordType == 'icon1_1') {
         titleImg = 'headline_07';
-    } else if (recordType == 'tab02_2') {
+    } else if (recordType == 'icon1_2') {
         titleImg = 'headline_08';
-    } else if (recordType == 'tab03_1') {
+    } else if (recordType == 'icon2_1') {
         titleImg = 'headline_09';
-    } else if (recordType == 'tab03_2') {
+    } else if (recordType == 'icon2_2') {
         titleImg = 'headline_10';
-    } else if (recordType == 'tab04_1') {
+    } else if (recordType == 'icon3_1') {
         titleImg = 'headline_11';
-    } else if (recordType == 'tab04_2') {
+    } else if (recordType == 'icon3_2') {
         titleImg = 'headline_12';
     }
 
