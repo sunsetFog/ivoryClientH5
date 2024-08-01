@@ -9,6 +9,7 @@
         position: fixed;
         left: 0;
         top: 0;
+        z-index: 9999;
         @include theme-light() {
             background-image: url('./img/card.png');
             background-repeat: no-repeat;

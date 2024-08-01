@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import { useSetState, useRequest } from 'ahooks';
 // styles
 import styles from './index.module.scss';
+import tab1sty from '../tab1/index.module.scss';
 import tab2sty from '../tab2/index.module.scss';
-import tab3sty from '../tab3/index.module.scss';
 import { callConfigTab4, inviteactivityTab4, newCallTab4, oldReturnTab4 } from '../../services';
 // component
 import { CopyToClipboard } from 'react-copy-to-clipboard';
@@ -159,20 +159,20 @@ const Tab3Unit = function (props) {
                 <div className={styles.pageBox} style={{ marginTop: '9.984px' }}>
                     <button className={styles.titleCheck}></button>
                 </div>
-                <div className={tab3sty.leiji}>
+                <div className={tab2sty.leiji}>
                     <p>被邀请人/邀请人同时获得元宝</p>
                 </div>
-                <div className={`${tab2sty.signInBox} ${styles.signInBox2}`}>
+                <div className={`${tab1sty.signInBox} ${styles.signInBox2}`}>
                     <ul>
                         {newList.map((item, index) => {
                             return (
                                 <li
                                     className={
-                                        !item.isApplied && !item.isToday && tab2sty.signOpacity
+                                        !item.isApplied && !item.isToday && tab1sty.signOpacity
                                     }
                                     key={index}
                                 >
-                                    <p className={`${tab2sty.pTitle} ${styles.pTitle}`}>
+                                    <p className={`${tab1sty.pTitle} ${styles.pTitle}`}>
                                         {item.pTitle}
                                     </p>
                                     <img
@@ -193,12 +193,12 @@ const Tab3Unit = function (props) {
                                             )}
                                         </button>
                                     </div>
-                                    <p className={`${tab2sty.virtualCoin} ${styles.virtualCoin}`}>
+                                    <p className={`${tab1sty.virtualCoin} ${styles.virtualCoin}`}>
                                         x{item.point}
                                     </p>
                                     {item.isApplied == 1 && (
                                         <img
-                                            className={tab2sty.iconHook}
+                                            className={tab1sty.iconHook}
                                             src={require('../tab1/img/icon_hook.png')}
                                         />
                                     )}
@@ -254,20 +254,20 @@ const Tab3Unit = function (props) {
                 <div className={styles.pageBox} style={{ marginTop: '9.984px' }}>
                     <button className={styles.titleDate}></button>
                 </div>
-                <div className={tab3sty.leiji}>
+                <div className={tab2sty.leiji}>
                     <p>回归元宝</p>
                 </div>
-                <div className={`${tab2sty.signInBox} ${styles.signInBox2}`}>
+                <div className={`${tab1sty.signInBox} ${styles.signInBox2}`}>
                     <ul>
                         {oldList.map((item, index) => {
                             return (
                                 <li
                                     className={
-                                        !item.isApplied && !item.isToday && tab2sty.signOpacity
+                                        !item.isApplied && !item.isToday && tab1sty.signOpacity
                                     }
                                     key={index}
                                 >
-                                    <p className={`${tab2sty.pTitle} ${styles.pTitle}`}>
+                                    <p className={`${tab1sty.pTitle} ${styles.pTitle}`}>
                                         {item.pTitle}
                                     </p>
                                     <img
@@ -288,12 +288,12 @@ const Tab3Unit = function (props) {
                                             )}
                                         </button>
                                     </div>
-                                    <p className={`${tab2sty.virtualCoin} ${styles.virtualCoin}`}>
+                                    <p className={`${tab1sty.virtualCoin} ${styles.virtualCoin}`}>
                                         x{item.point}
                                     </p>
                                     {item.isApplied == 1 && (
                                         <img
-                                            className={tab2sty.iconHook}
+                                            className={tab1sty.iconHook}
                                             src={require('../tab1/img/icon_hook.png')}
                                         />
                                     )}

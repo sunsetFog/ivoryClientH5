@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSetState, useRequest } from 'ahooks';
 // styles
 import styles from './index.module.scss';
-import tab2sty from '../tab2/index.module.scss';
+import tab1sty from '../tab1/index.module.scss';
 import { depositApplyTab3, depositInfoTab3 } from '../../services';
 // import { useBindPhone } from '@/utils/hooks/useBindPhone';
 // component
@@ -114,7 +114,7 @@ const Tab2Unit = function (props) {
                         <div className={styles.leiji}>
                             <p>单日累计有效存款/存款元宝</p>
                         </div>
-                        <div className={`${tab2sty.signInBox} ${styles.signInBox2}`}>
+                        <div className={`${tab1sty.signInBox} ${styles.signInBox2}`}>
                             <ul>
                                 {arrList.map((item, index) => {
                                     return (
@@ -126,13 +126,13 @@ const Tab2Unit = function (props) {
                                                 styles.signOpacity
                                             }
                                         >
-                                            <p className={`${tab2sty.pTitle} ${styles.bijiao}`}>
+                                            <p className={`${tab1sty.pTitle} ${styles.bijiao}`}>
                                                 ≥{item.deposit}元
                                             </p>
-                                            <div className={`${tab2sty.yuanbao} ${styles.yuanbao}`}>
+                                            <div className={`${tab1sty.yuanbao} ${styles.yuanbao}`}>
                                                 <img src={require('../tab1/img/yuanbao_big.png')} />
                                                 <p
-                                                    className={`${tab2sty.virtualCoin} ${styles.virtualCoin}`}
+                                                    className={`${tab1sty.virtualCoin} ${styles.virtualCoin}`}
                                                 >
                                                     x{item.point}
                                                 </p>
@@ -140,7 +140,7 @@ const Tab2Unit = function (props) {
 
                                             {item.IsApplied && (
                                                 <img
-                                                    className={tab2sty.iconHook}
+                                                    className={tab1sty.iconHook}
                                                     src={require('../tab1/img/icon_hook.png')}
                                                 />
                                             )}

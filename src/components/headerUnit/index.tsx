@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 // styles
 import styles from './index.module.scss';
 import { useNavigate } from 'react-router-dom';
-
-function headerUnit() {
+interface Headerprops {
+    title?: string;
+}
+function headerUnit({ title }: Headerprops) {
     const navigate = useNavigate();
     const goWay = () => {
         navigate(-1);
@@ -14,7 +16,7 @@ function headerUnit() {
                 <div className={styles.icon}>
                     <div onClick={goWay}></div>
                 </div>
-                <div className={styles.title}>兑换</div>
+                <div className={styles.title}>{title}</div>
             </header>
         </main>
     );

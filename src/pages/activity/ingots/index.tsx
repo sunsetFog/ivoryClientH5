@@ -27,7 +27,7 @@ const IngotsUnit = () => {
 
     return (
         <section className={styles.IngotsUnit}>
-            <HeaderUnit></HeaderUnit>
+            <HeaderUnit title='元宝'></HeaderUnit>
             <div className={styles.banner}></div>
             <main className={styles.bgBox}>
                 <div className={styles.topLine}>

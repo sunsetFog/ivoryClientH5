@@ -27,7 +27,7 @@ function exchange() {
     };
     return (
         <section className={styles.exchange}>
-            <HeaderUnit></HeaderUnit>
+            <HeaderUnit title='兑换'></HeaderUnit>
             <div className={styles.banner}></div>
             <TabPanel></TabPanel>
             <div className={styles.cabbage}>
