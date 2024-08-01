@@ -3,7 +3,7 @@ import { useSetState, useRequest } from 'ahooks';
 // styles
 import styles from './index.module.scss';
 import tab1sty from '../tab1/index.module.scss';
-import { depositApplyTab3, depositInfoTab3 } from '../../services';
+import { depositApplyTab2, depositInfoTab2 } from '../../services';
 // import { useBindPhone } from '@/utils/hooks/useBindPhone';
 // component
 import TitleBox from '../titleBox';
@@ -22,7 +22,7 @@ const Tab2Unit = function (props) {
     // const { handleBindPhone } = useBindPhone();
     // 接口
     const { run: depositApplyRun } = useRequest(
-        (sendingData = {}) => depositApplyTab3(sendingData),
+        (sendingData = {}) => depositApplyTab2(sendingData),
         {
             manual: true,
             onSuccess: (result: any) => {
@@ -34,9 +34,67 @@ const Tab2Unit = function (props) {
             },
         },
     );
-    const { run: depositInfoRun } = useRequest((sendingData = {}) => depositInfoTab3(sendingData), {
+    const { run: depositInfoRun } = useRequest((sendingData = {}) => depositInfoTab2(sendingData), {
         manual: true,
         onSuccess: (result: any) => {
+            result = {
+                data: {
+                    list: [
+                        {
+                            id: 1,
+                            point: 200,
+                            deposit: 100,
+                            IsApplied: false,
+                            IsHighLight: false,
+                        },
+                        {
+                            id: 2,
+                            point: 300,
+                            deposit: 800,
+                            IsApplied: false,
+                            IsHighLight: false,
+                        },
+                        {
+                            id: 3,
+                            point: 400,
+                            deposit: 2000,
+                            IsApplied: false,
+                            IsHighLight: false,
+                        },
+                        {
+                            id: 4,
+                            point: 800,
+                            deposit: 5000,
+                            IsApplied: false,
+                            IsHighLight: false,
+                        },
+                        {
+                            id: 5,
+                            point: 1200,
+                            deposit: 10000,
+                            IsApplied: false,
+                            IsHighLight: false,
+                        },
+                        {
+                            id: 6,
+                            point: 1600,
+                            deposit: 50000,
+                            IsApplied: false,
+                            IsHighLight: false,
+                        },
+                        {
+                            id: 7,
+                            point: 2400,
+                            deposit: 100000,
+                            IsApplied: false,
+                            IsHighLight: false,
+                        },
+                    ],
+                    userRecharge: 0,
+                },
+                message: 'success',
+                status_code: 6000,
+            };
             let arrBox = JSON.parse(JSON.stringify(result.data.list || []));
             setState({
                 lingqu: false,

@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useSetState, useRequest } from 'ahooks';
 // styles
 import styles from './index.module.scss';
-import { giftExchangeTab1, giftListTab1, pointStatisticsTab1 } from '../../services';
+import { giftExchangeTab4, giftListTab4, pointStatisticsTab4 } from '../../services';
 
 // import { useBindPhone } from '@/utils/hooks/useBindPhone';
 import { Toast } from 'antd-mobile';
@@ -27,7 +27,7 @@ const Tab4Unit = function (props) {
     const disposable = useRef(true);
     // const { handleBindPhone } = useBindPhone();
     // 接口
-    const { run: exchangeRun } = useRequest((sendingData = {}) => giftExchangeTab1(sendingData), {
+    const { run: exchangeRun } = useRequest((sendingData = {}) => giftExchangeTab4(sendingData), {
         manual: true,
         onSuccess: (result: any) => {
             pointStatisticsWay();
@@ -37,9 +37,54 @@ const Tab4Unit = function (props) {
             });
         },
     });
-    const { run: giftListRun } = useRequest((sendingData = {}) => giftListTab1(sendingData), {
+    const { run: giftListRun } = useRequest((sendingData = {}) => giftListTab4(sendingData), {
         manual: true,
         onSuccess: (result: any, paramsArr: any) => {
+            result = {
+                data: {
+                    list: [
+                        {
+                            id: 60008,
+                            giftName: 'Redmi 13C 5G',
+                            giftAmount: 3000,
+                            point: 10,
+                            isPre: 1,
+                            h5Img: require('./img/goods/mi1.png'),
+                            isNew: 0,
+                        },
+                        {
+                            id: 60009,
+                            giftName: 'Redmi 13C',
+                            giftAmount: 3200,
+                            point: 10,
+                            isPre: 1,
+                            h5Img: require('./img/goods/mi2.png'),
+                            isNew: 0,
+                        },
+                        {
+                            id: 60010,
+                            giftName: 'Xiaomi 14',
+                            giftAmount: 5999,
+                            point: 10,
+                            isPre: 1,
+                            h5Img: require('./img/goods/mi3.png'),
+                            isNew: 0,
+                        },
+                        {
+                            id: 60011,
+                            giftName: 'Xiaomi 14 Ultra',
+                            giftAmount: 8999,
+                            point: 10,
+                            isPre: 1,
+                            h5Img: require('./img/goods/mi4.png'),
+                            isNew: 0,
+                        },
+                    ],
+                    totalPage: 2,
+                },
+                message: 'success',
+                status_code: 6000,
+            };
             if (disposable.current) {
                 disposable.current = false;
                 newsWay();
@@ -70,10 +115,16 @@ const Tab4Unit = function (props) {
         },
     });
     const { run: pointStatisticsRun } = useRequest(
-        (sendingData = {}) => pointStatisticsTab1(sendingData),
+        (sendingData = {}) => pointStatisticsTab4(sendingData),
         {
             manual: true,
             onSuccess: (result: any) => {
+                result = {
+                    data: {
+                        totalAmount: 1000,
+                        totalPoint: 200,
+                    },
+                };
                 setState({
                     amountObj: result.data || {
                         totalAmount: 0,

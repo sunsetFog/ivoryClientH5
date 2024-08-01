@@ -4,7 +4,7 @@ import { useSetState, useRequest } from 'ahooks';
 import styles from './index.module.scss';
 import tab1sty from '../tab1/index.module.scss';
 import tab2sty from '../tab2/index.module.scss';
-import { callConfigTab4, inviteactivityTab4, newCallTab4, oldReturnTab4 } from '../../services';
+import { callConfigTab3, inviteactivityTab3, newCallTab3, oldReturnTab3 } from '../../services';
 // component
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import ActivityDescription from '../editor/activityDescription';
@@ -22,9 +22,59 @@ const Tab3Unit = function (props) {
     const disposable = useRef(true);
     // const { handleBindPhone } = useBindPhone();
     // 接口
-    const { run: callConfigRun } = useRequest((sendingData = {}) => callConfigTab4(sendingData), {
+    const { run: callConfigRun } = useRequest((sendingData = {}) => callConfigTab3(sendingData), {
         manual: true,
         onSuccess: (result: any, paramsArr: any) => {
+            result = {
+                data: {
+                    list: [
+                        {
+                            id: 1,
+                            point: 200,
+                            isApplied: 0,
+                            isToday: 1,
+                        },
+                        {
+                            id: 2,
+                            point: 300,
+                            isApplied: 0,
+                            isToday: 0,
+                        },
+                        {
+                            id: 3,
+                            point: 400,
+                            isApplied: 0,
+                            isToday: 0,
+                        },
+                        {
+                            id: 4,
+                            point: 600,
+                            isApplied: 0,
+                            isToday: 0,
+                        },
+                        {
+                            id: 5,
+                            point: 800,
+                            isApplied: 0,
+                            isToday: 0,
+                        },
+                        {
+                            id: 6,
+                            point: 900,
+                            isApplied: 0,
+                            isToday: 0,
+                        },
+                        {
+                            id: 7,
+                            point: 1200,
+                            isApplied: 0,
+                            isToday: 0,
+                        },
+                    ],
+                },
+                message: 'success',
+                status_code: 6000,
+            };
             if (disposable.current) {
                 disposable.current = false;
                 oldWay();
@@ -93,17 +143,23 @@ const Tab3Unit = function (props) {
         },
     });
     const { run: inviteactivityRun } = useRequest(
-        (sendingData = {}) => inviteactivityTab4(sendingData),
+        (sendingData = {}) => inviteactivityTab3(sendingData),
         {
             manual: true,
             onSuccess: (result: any) => {
+                result = {
+                    data: {
+                        h5_domain: 'https://fanyi.youdao.com',
+                        site_domain: 'https://www.mi.com',
+                    },
+                };
                 setState({
                     inviteObj: result.data || {},
                 });
             },
         },
     );
-    const { run: newCallRun } = useRequest((sendingData = {}) => newCallTab4(sendingData), {
+    const { run: newCallRun } = useRequest((sendingData = {}) => newCallTab3(sendingData), {
         manual: true,
         onSuccess: (result: any) => {
             newWay();
@@ -113,7 +169,7 @@ const Tab3Unit = function (props) {
             });
         },
     });
-    const { run: oldReturnRun } = useRequest((sendingData = {}) => oldReturnTab4(sendingData), {
+    const { run: oldReturnRun } = useRequest((sendingData = {}) => oldReturnTab3(sendingData), {
         manual: true,
         onSuccess: (result: any) => {
             oldWay();

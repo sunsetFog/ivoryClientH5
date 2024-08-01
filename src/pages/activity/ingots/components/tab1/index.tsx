@@ -2,7 +2,7 @@ import React, { useEffect, useImperativeHandle, useRef } from 'react';
 import { useSetState, useRequest } from 'ahooks';
 // styles
 import styles from './index.module.scss';
-import { dayApplyTab2, dayInfoTab2, timeApplyTab2 } from '../../services';
+import { dayApplyTab1, dayInfoTab1, timeApplyTab1 } from '../../services';
 import { Toast } from 'antd-mobile';
 // component
 import ActivityDescription from '../editor/activityDescription';
@@ -25,7 +25,7 @@ const Tab1Unit = function (props) {
         };
     });
     // 接口
-    const { run: dayApplyRun } = useRequest((sendingData = {}) => dayApplyTab2(sendingData), {
+    const { run: dayApplyRun } = useRequest((sendingData = {}) => dayApplyTab1(sendingData), {
         manual: true,
         onSuccess: (result: any) => {
             rewardInfo(true);
@@ -35,9 +35,150 @@ const Tab1Unit = function (props) {
             });
         },
     });
-    const { run: dayInfoRun } = useRequest((sendingData = {}) => dayInfoTab2(sendingData), {
+    const { run: dayInfoRun } = useRequest((sendingData = {}) => dayInfoTab1(sendingData), {
         manual: true,
         onSuccess: (result: any, paramsArr: any) => {
+            result = {
+                data: {
+                    signRewardList: [
+                        {
+                            signRewardConf: {
+                                id: 1,
+                                point: 100,
+                                extraPoint: 0,
+                                sumDay: 1,
+                            },
+                            isApplied: false,
+                            isToday: true,
+                        },
+                        {
+                            signRewardConf: {
+                                id: 2,
+                                point: 100,
+                                extraPoint: 0,
+                                sumDay: 2,
+                            },
+                            isApplied: false,
+                            isToday: false,
+                        },
+                        {
+                            signRewardConf: {
+                                id: 3,
+                                point: 200,
+                                extraPoint: 100,
+                                sumDay: 3,
+                            },
+                            isApplied: false,
+                            isToday: false,
+                        },
+                        {
+                            signRewardConf: {
+                                id: 4,
+                                point: 200,
+                                extraPoint: 0,
+                                sumDay: 4,
+                            },
+                            isApplied: false,
+                            isToday: false,
+                        },
+                        {
+                            signRewardConf: {
+                                id: 5,
+                                point: 300,
+                                extraPoint: 0,
+                                sumDay: 5,
+                            },
+                            isApplied: false,
+                            isToday: false,
+                        },
+                        {
+                            signRewardConf: {
+                                id: 6,
+                                point: 400,
+                                extraPoint: 0,
+                                sumDay: 6,
+                            },
+                            isApplied: false,
+                            isToday: false,
+                        },
+                        {
+                            signRewardConf: {
+                                id: 7,
+                                point: 500,
+                                extraPoint: 200,
+                                sumDay: 7,
+                            },
+                            isApplied: false,
+                            isToday: false,
+                        },
+                    ],
+                    signTimeRewardConfList: [
+                        {
+                            signTimeRewardConf: {
+                                id: 1,
+                                point: 10,
+                                time: 1,
+                            },
+                            isApplied: false,
+                            countTime: 60,
+                            highLight: false,
+                        },
+                        {
+                            signTimeRewardConf: {
+                                id: 2,
+                                point: 20,
+                                time: 5,
+                            },
+                            isApplied: false,
+                            countTime: 300,
+                            highLight: false,
+                        },
+                        {
+                            signTimeRewardConf: {
+                                id: 3,
+                                point: 30,
+                                time: 10,
+                            },
+                            isApplied: false,
+                            countTime: 600,
+                            highLight: false,
+                        },
+                        {
+                            signTimeRewardConf: {
+                                id: 4,
+                                point: 40,
+                                time: 30,
+                            },
+                            isApplied: false,
+                            countTime: 1800,
+                            highLight: false,
+                        },
+                        {
+                            signTimeRewardConf: {
+                                id: 5,
+                                point: 50,
+                                time: 60,
+                            },
+                            isApplied: false,
+                            countTime: 3600,
+                            highLight: false,
+                        },
+                        {
+                            signTimeRewardConf: {
+                                id: 6,
+                                point: 60,
+                                time: 300,
+                            },
+                            isApplied: false,
+                            countTime: 18000,
+                            highLight: false,
+                        },
+                    ],
+                    count: 3,
+                },
+                message: 'success',
+                status_code: 6000,
+            };
             let value = paramsArr[1];
             let signRewardList = JSON.parse(JSON.stringify(result.data.signRewardList || []));
             let signTimeRewardConfList = JSON.parse(
@@ -97,7 +238,7 @@ const Tab1Unit = function (props) {
             });
         },
     });
-    const { run: timeApplyRun } = useRequest((sendingData = {}) => timeApplyTab2(sendingData), {
+    const { run: timeApplyRun } = useRequest((sendingData = {}) => timeApplyTab1(sendingData), {
         manual: true,
         onSuccess: (result: any) => {
             Toast.show({

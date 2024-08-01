@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useSetState, useRequest } from 'ahooks';
 // styles
 import styles from './index.module.scss';
-import { adRecord, dayApplyTab2, dayInfoTab2 } from '../../../services';
+import { adRecord, dayApplyTab1, dayInfoTab1 } from '../../../services';
 // component
 // import { useBindPhone } from '@/utils/hooks/useBindPhone';
 
@@ -31,7 +31,7 @@ const signInModal = function () {
             }
         },
     });
-    const { run: dayApplyRun } = useRequest((sendingData = {}) => dayApplyTab2(sendingData), {
+    const { run: dayApplyRun } = useRequest((sendingData = {}) => dayApplyTab1(sendingData), {
         manual: true,
         onSuccess: () => {
             setState({
@@ -49,7 +49,7 @@ const signInModal = function () {
             }, 2000);
         },
     });
-    const { run: dayInfoRun } = useRequest((sendingData = {}) => dayInfoTab2(sendingData), {
+    const { run: dayInfoRun } = useRequest((sendingData = {}) => dayInfoTab1(sendingData), {
         manual: true,
         onSuccess: (result: any) => {
             let signRewardList = JSON.parse(JSON.stringify(result.data.signRewardList || []));
