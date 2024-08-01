@@ -1,0 +1,186 @@
+.tab01 {
+  @import "@/pages/activity/ingots/common.scss";
+  @mixin summer() {
+    background: linear-gradient(180deg, #FFF 0%, #FFEAC1 87.14%, #FFFBF3 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  $lineOfHeight: 43.16px;
+  .amountBox {
+    width: 100%;
+    height: $lineOfHeight;
+    padding: 0 5.2px;
+    box-sizing: border-box;
+    position: relative;
+    img:nth-of-type(1) {
+      width: calc((100% - 9.88px)/2);
+      float: left;
+      margin-right: 9.88px;
+    }
+    img:nth-of-type(2) {
+      width: calc((100% - 9.88px)/2);
+      float: right;
+    }
+
+    .yuanbao, .caijin {
+      width: 23.3%;
+      height: 100%;
+      text-align: center;
+      line-height: calc(#{$lineOfHeight} + 2.08px);
+      font-size: 15.08px;
+      font-weight: 800;
+      position: absolute;
+      top: 0;
+      @include summer();
+    }
+    .yuanbao {
+      left: 21.7%;
+    }
+    .caijin {
+      right: 5.2%;
+    }
+  }
+  .exchange {
+    width: 100%;
+    margin: 24.96px 0 0 0;
+    .centerBT {
+      display: flex;
+      justify-content: center;
+    }
+    ul {
+      width: 100%;
+      padding: 0 11.96px;
+      box-sizing: border-box;
+      li {
+        width: 175.24px;
+        height: 240.76px;
+        background-image: url('./img/box_01.png');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        margin-top: 11.96px;
+        position: relative;
+        @include theme-night() {
+          background-image: url('./img/box_01_night.png');
+          background-size: 100% 100%;
+          background-repeat: no-repeat;
+        }
+        .tpNew {
+          width: 32.24px;
+          height: 40.04px;
+          position: absolute;
+          right: -11.96px;
+          top: -2.08px;
+        }
+        .virtualCoin {
+          font-size: 14.04px;
+          height: 30.16px;
+          line-height: 29.12px;
+          left: 40.04px;
+          bottom: 28.08px;
+        }
+
+        .title {
+          width: 100%;
+          text-align: center;
+          color: #947F8B;
+          font-size: 11.96px;
+          font-weight: 500;
+          position: absolute;
+          left: 0px;
+          top: 15.08px;
+          padding: 0 18.2px 0 20.8px;
+          box-sizing: border-box;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          @include theme-night() {
+            color: #fff;
+          }
+        }
+        .money {
+          width: 100%;
+          text-align: center;
+          color: #FF2E00;
+          font-size: 11.96px;
+          font-weight: 500;
+          position: absolute;
+          left: 0px;
+          top: 32.24px;
+          @include theme-night() {
+            color: #fff;
+          }
+          span {
+            font-size: 19.76px;
+            font-weight: 700;
+          }
+        }
+        .h5Img {
+          width: 140.92px;
+          height: 110.24px;
+          border-radius: 11.96px;
+          border: 2.08px solid #FF465E;
+          background: linear-gradient(180deg, #FFFBE8 0%, #FFF5C3 100%);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: absolute;
+          left: 20.8px;
+          top: 60.84px;
+          img {
+            width: 83.2px;
+            height: 99.84px;
+          }
+        }
+        .duihuan {
+          width: 47.84px;
+          height: 26px;
+          position: absolute;
+          right: 9.88px;
+          bottom: 32.24px;
+        }
+      }
+      li:nth-of-type(odd) {
+        float: left;
+      }
+      li:nth-of-type(even) {
+        float: right;
+      }
+      li:nth-of-type(1), li:nth-of-type(2) {
+        margin-top: 0px;
+      }
+    }
+  }
+
+  .giftBox {
+    width: 100%;
+    height: 104px;
+    display: flex;
+    justify-content: center;
+    margin-top: 30.16px;
+    img {
+      width: 300.04px;
+      height: 100%;
+    }
+  }
+  .newGift {
+    ul {
+      li {
+        background-image: url('./img/box_02.png');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        @include theme-night() {
+          background-image: url('./img/box_02_night.png');
+          background-size: 100% 100%;
+          background-repeat: no-repeat;
+        }
+        .virtualCoin {
+          height: 30.16px;
+          line-height: 29.12px;
+          left: 59.8px;
+          bottom: 27.56px;
+        }
+      }
+    }
+  }
+}

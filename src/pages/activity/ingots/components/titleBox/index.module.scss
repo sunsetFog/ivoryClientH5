@@ -1,0 +1,64 @@
+.titleBox {
+  $hsss: 32.24px;
+  width: 100%;
+  padding: 83px 4.16px 30px 4.16px;
+  box-sizing: border-box;
+  position: relative;
+  header {
+    width: 100%;
+    height: 68.12px;
+    position: absolute;
+    left: 0px;
+    top: 15.08px;
+    z-index: 2;
+    .titleImg {
+      width: 300.04px;
+      height: 108.16px;
+      position: absolute;
+      left: 50%;
+      top: 0px;
+      margin-left: -149.76px;
+    }
+    .recordImg {
+      width: 67.08px;
+      height: 67.08px;
+      position: absolute;
+      right: 0px;
+      top: -21.84px;
+    }
+    .timeBox {
+      width: 100%;
+      font-size: 9.88px;
+      font-weight: 700;
+      background: linear-gradient(180deg, #FFF 0%, #FFE661 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: absolute;
+      left: 0px;
+      top: 74.88px;
+      display: flex;
+      justify-content: center;
+      p {
+        font-size: 9.88px !important;
+      }
+    }
+  }
+  .mainTag {
+    width: 100%;
+    min-height: 30.16px;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-size: 100% $hsss, 100% calc(100% - #{$hsss} * 2 + 4px), 100% $hsss;
+    background-position: left top, left calc(#{$hsss} - 2px), left bottom;
+    padding: calc(#{$hsss} + 16px) 15.08px $hsss 15.08px;
+    box-sizing: border-box;
+    overflow: hidden;
+    margin: 0;
+    @include theme-light() {
+      background-image: url('./img/bg_top.png'), url('./img/bg_middle.png'), url('./img/bg_botton.png');
+    }
+    @include theme-night() {
+      background-image: url('./img/bg_top_night.png'), url('./img/bg_middle_night.png'), url('./img/bg_botton_night.png');
+    }
+  }
+}

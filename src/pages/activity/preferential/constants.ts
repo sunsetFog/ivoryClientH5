@@ -5,6 +5,10 @@ export const bread = [
         path: '/activity/exchange',
     },
     {
+        title: '元宝',
+        path: '',
+    },
+    {
         title: '转盘抽奖',
         path: '',
     },

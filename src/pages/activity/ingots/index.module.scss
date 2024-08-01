@@ -1,0 +1,54 @@
+.IngotsUnit {
+    .banner {
+        width: 100%;
+        height: 192px;
+        background-image: url('./img/banner1.jpg');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+
+    .bgBox {
+        background-image: url('./img/bg.jpg');
+        background-repeat: repeat-y;
+        background-size: 100% 500.24px;
+
+        @include theme-night() {
+            background-image: url('./img/bg_night.jpg');
+            background-repeat: repeat-y;
+            background-size: 100% 500.24px;
+        }
+
+        .topLine {
+            position: relative;
+            width: 100%;
+            height: 9.88px;
+
+            img {
+                position: absolute;
+                top: -11.96px;
+                left: 0;
+                width: 100%;
+                height: 40.04px;
+            }
+        }
+
+        .navList {
+            box-sizing: border-box;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 100%;
+            padding: 37.96px 19.76px 9.88px;
+
+            img {
+                width: 164.84px;
+                height: 164.84px;
+            }
+
+            img:nth-of-type(3),
+            img:nth-of-type(4) {
+                margin-top: 11.96px;
+            }
+        }
+    }
+}

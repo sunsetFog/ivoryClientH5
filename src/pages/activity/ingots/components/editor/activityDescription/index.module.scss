@@ -1,0 +1,62 @@
+
+
+.activityDescription {
+  width: 100%;
+  overflow: hidden;
+  @import "@/pages/activity/ingots/common.scss";
+
+  @mixin pear() {
+    margin: 0;
+    font-size: 15.08px;
+    font-weight: 600;
+    color: #FF3946;
+    @include theme-night() {
+      color: #fff;
+    }
+  }
+
+  p {
+    @include pear();
+    line-height: 21.84px;
+  }
+  button {
+    @include peach();
+    display: block;
+    float: left;
+    font-size: 14.04px;
+    font-family: Microsoft YaHei;
+  }
+  span {
+    float: left;
+    height: 22.88px;
+    display: inline-block;
+    @include pear();
+  }
+  .oneItem1 {
+    @include pear();
+    text-indent: 24.96px;
+    line-height: 23.92px;
+  }
+  .oneItem2 {
+    @include pear();
+    line-height: 23.92px;
+  }
+
+  @for $i from 1 to 4 {
+    .noticeItem#{$i} {
+      width: 100%;
+      margin-bottom: 9.88px;
+      overflow: hidden;
+    }
+  }
+
+//   .noticeItem1, .noticeItem2 {
+//     display: flex;
+//     align-items: center;
+//   }
+
+}
+
+
+
+

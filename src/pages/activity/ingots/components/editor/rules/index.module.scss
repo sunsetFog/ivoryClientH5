@@ -1,0 +1,51 @@
+.rules {
+  @for $i from 1 to 17 {
+    li:nth-child(#{$i}) {
+      position: relative;
+      display: block;
+      padding-left: 35.88px;
+      margin-top: 9.88px;
+
+      p {
+        padding-left: 0 !important;
+      }
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 23.92px;
+        height: 23.92px;
+        margin-top: 6.24px;
+        margin-right: 11.96px;
+        font-size: 11.96px;
+        font-weight: 600;
+        line-height: 23.92px;
+        color: #fef5f6;
+        text-align: center;
+        content: '#{$i}';
+        background-image: url('./img/icon_rules_bg.png');
+        background-size: 100% 100%;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  li,
+  p {
+    font-size: 15.08px;
+    font-weight: 500;
+    line-height: normal;
+    color: #ff3946;
+    @include theme-night() {
+      color: #fff;
+    }
+  }
+}

@@ -1,0 +1,201 @@
+import React, { useEffect } from 'react';
+import { useSetState, useRequest } from 'ahooks';
+// styles
+import styles from './index.module.scss';
+import tab2sty from '../tab2/index.module.scss';
+import { depositApplyTab3, depositInfoTab3 } from '../../services';
+// import { useBindPhone } from '@/utils/hooks/useBindPhone';
+// component
+import TitleBox from '../titleBox';
+import ActivityDescription from '../editor/activityDescription';
+import Rules from '../editor/rules';
+import TableUnit from '../editor/tableUnit';
+import { Toast } from 'antd-mobile';
+
+const Tab3 = function (props) {
+    const [state, setState] = useSetState({
+        activeKey: 0,
+        arrList: [],
+        userRecharge: 0,
+        lingqu: false,
+    });
+    // const { handleBindPhone } = useBindPhone();
+    // 接口
+    const { run: depositApplyRun } = useRequest(
+        (sendingData = {}) => depositApplyTab3(sendingData),
+        {
+            manual: true,
+            onSuccess: (result: any) => {
+                detailWay();
+                Toast.show({
+                    icon: 'success',
+                    content: result.message,
+                });
+            },
+        },
+    );
+    const { run: depositInfoRun } = useRequest((sendingData = {}) => depositInfoTab3(sendingData), {
+        manual: true,
+        onSuccess: (result: any) => {
+            let arrBox = JSON.parse(JSON.stringify(result.data.list || []));
+            setState({
+                lingqu: false,
+            });
+            for (let i = 0; i < arrBox.length; i++) {
+                let item = arrBox[i];
+                if (item.IsApplied) {
+                    setState({
+                        lingqu: true,
+                    });
+                }
+            }
+            setState({
+                arrList: arrBox,
+                userRecharge: result.data.userRecharge,
+            });
+        },
+    });
+    // 方法
+    const detailWay = () => {
+        depositInfoRun();
+    };
+    const takeWay = (index) => {
+        setState({
+            activeKey: index,
+        });
+    };
+    const depositApplyWay = () => {
+        // handleBindPhone(() => {
+        depositApplyRun();
+        // });
+    };
+    useEffect(() => {
+        detailWay();
+    }, []);
+    const { activeKey, arrList, userRecharge, lingqu } = state;
+    const { formatCon } = props;
+    return (
+        <section className={styles.tab3}>
+            <div className={styles.lingquyuanbao}>
+                <ul>
+                    <li
+                        onClick={() => {
+                            takeWay(0);
+                        }}
+                    >
+                        <img
+                            src={
+                                activeKey == 0
+                                    ? require('./img/headline_rc_sel.png')
+                                    : require('./img/headline_rc_nor.png')
+                            }
+                        />
+                    </li>
+                    <li
+                        onClick={() => {
+                            takeWay(1);
+                        }}
+                    >
+                        <img
+                            src={
+                                activeKey == 1
+                                    ? require('./img/headline_tz_sel.png')
+                                    : require('./img/headline_tz_nor.png')
+                            }
+                        />
+                    </li>
+                </ul>
+            </div>
+            <div style={{ clear: 'both' }}></div>
+            {activeKey == 0 && (
+                <section>
+                    <TitleBox titleImg='title_03' recordType='tab03_1'>
+                        <ActivityDescription illustrate={formatCon[6]}></ActivityDescription>
+                        <div className={styles.leiji}>
+                            <p>单日累计有效存款/存款元宝</p>
+                        </div>
+                        <div className={`${tab2sty.signInBox} ${styles.signInBox2}`}>
+                            <ul>
+                                {arrList.map((item, index) => {
+                                    return (
+                                        <li
+                                            key={index}
+                                            className={
+                                                !item.IsApplied &&
+                                                !item.IsHighLight &&
+                                                styles.signOpacity
+                                            }
+                                        >
+                                            <p className={`${tab2sty.pTitle} ${styles.bijiao}`}>
+                                                ≥{item.deposit}元
+                                            </p>
+                                            <div className={`${tab2sty.yuanbao} ${styles.yuanbao}`}>
+                                                <img src={require('../tab2/img/yuanbao_big.png')} />
+                                                <p
+                                                    className={`${tab2sty.virtualCoin} ${styles.virtualCoin}`}
+                                                >
+                                                    x{item.point}
+                                                </p>
+                                            </div>
+
+                                            {item.IsApplied && (
+                                                <img
+                                                    className={tab2sty.iconHook}
+                                                    src={require('../tab2/img/icon_hook.png')}
+                                                />
+                                            )}
+                                        </li>
+                                    );
+                                })}
+
+                                <div style={{ clear: 'both' }}></div>
+                            </ul>
+                        </div>
+                        <div className={`${styles.pageBox}`}>
+                            {lingqu ? (
+                                <button>
+                                    <span>今日已领取</span>
+                                </button>
+                            ) : (
+                                <button onClick={depositApplyWay}>
+                                    <span>立即领取</span>
+                                </button>
+                            )}
+                        </div>
+                        {lingqu ? (
+                            <p className={styles.cunkuan}>截止领取前累计存款：{userRecharge}元</p>
+                        ) : (
+                            <p className={styles.cunkuan}>今日累计存款：{userRecharge}元</p>
+                        )}
+                    </TitleBox>
+                    <TitleBox titleImg='headline_02'>
+                        <Rules illustrate={formatCon[7]}></Rules>
+                    </TitleBox>
+                </section>
+            )}
+
+            {activeKey == 1 && (
+                <section>
+                    <TitleBox titleImg='title_04' recordType='tab03_2'>
+                        <ActivityDescription
+                            illustrate={formatCon[8]}
+                            isShow='3'
+                        ></ActivityDescription>
+                        <TableUnit illustrate={formatCon[9]}></TableUnit>
+                        <div className={styles.chestnut}>
+                            <ActivityDescription
+                                illustrate={formatCon[10]}
+                                isShow='1a'
+                            ></ActivityDescription>
+                        </div>
+                    </TitleBox>
+                    <TitleBox titleImg='headline_02'>
+                        <Rules illustrate={formatCon[11]}></Rules>
+                    </TitleBox>
+                </section>
+            )}
+        </section>
+    );
+};
+
+export default Tab3;
