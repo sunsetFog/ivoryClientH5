@@ -2,313 +2,238 @@ import React, { useEffect, useRef } from 'react';
 import { useSetState, useRequest } from 'ahooks';
 // styles
 import styles from './index.module.scss';
-import tab2sty from '../tab2/index.module.scss';
-import tab3sty from '../tab3/index.module.scss';
-import { callConfigTab4, inviteactivityTab4, newCallTab4, oldReturnTab4 } from '../../services';
+import { giftExchangeTab1, giftListTab1, pointStatisticsTab1 } from '../../services';
+
+// import { useBindPhone } from '@/utils/hooks/useBindPhone';
+import { Toast } from 'antd-mobile';
 // component
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 import ActivityDescription from '../editor/activityDescription';
 import Rules from '../editor/rules';
 import TitleBox from '../titleBox';
-import { Toast } from 'antd-mobile';
-// import { useBindPhone } from '@/utils/hooks/useBindPhone';
 
-const Tab4 = function (props) {
+const Tab4Unit = function (props) {
     const [state, setState] = useSetState({
+        goodsList: [],
+        pageNum: 1,
+        totalPage: 0,
         newList: [],
-        oldList: [],
-        inviteObj: {} as any,
+        pageCount: 1,
+        allPage: 0,
+        amountObj: {
+            totalAmount: 0,
+            totalPoint: 0,
+        },
     });
     const disposable = useRef(true);
     // const { handleBindPhone } = useBindPhone();
     // 接口
-    const { run: callConfigRun } = useRequest((sendingData = {}) => callConfigTab4(sendingData), {
+    const { run: exchangeRun } = useRequest((sendingData = {}) => giftExchangeTab1(sendingData), {
+        manual: true,
+        onSuccess: (result: any) => {
+            pointStatisticsWay();
+            Toast.show({
+                icon: 'success',
+                content: result.data.message,
+            });
+        },
+    });
+    const { run: giftListRun } = useRequest((sendingData = {}) => giftListTab1(sendingData), {
         manual: true,
         onSuccess: (result: any, paramsArr: any) => {
             if (disposable.current) {
                 disposable.current = false;
-                oldWay();
+                newsWay();
             }
-            if (paramsArr[0].recordType == 5) {
-                let newList = JSON.parse(JSON.stringify(result.data.list || []));
-                for (let i = 0; i < newList.length; i++) {
-                    let item = newList[i];
-                    if (i == 0) {
-                        item.pTitle = '第一天';
-                        item.imgName = 'yuanbao_200';
-                    } else if (i == 1) {
-                        item.pTitle = '第二天';
-                        item.imgName = 'yuanbao_300';
-                    } else if (i == 2) {
-                        item.pTitle = '第三天';
-                        item.imgName = 'yuanbao_400';
-                    } else if (i == 3) {
-                        item.pTitle = '第四天';
-                        item.imgName = 'yuanbao_600';
-                    } else if (i == 4) {
-                        item.pTitle = '第五天';
-                        item.imgName = 'yuanbao_800';
-                    } else if (i == 5) {
-                        item.pTitle = '第六天';
-                        item.imgName = 'yuanbao_900';
-                    } else if (i == 6) {
-                        item.pTitle = '第七天';
-                        item.imgName = 'yuanbao_1200';
-                    }
-                }
+            if (paramsArr[0].isPre == 2) {
+                let pageNum = paramsArr[1];
                 setState({
-                    newList: newList,
+                    goodsList: result.data.list || [],
+                    totalPage: result.data.totalPage,
                 });
-            } else if (paramsArr[0].recordType == 7) {
-                let newList = JSON.parse(JSON.stringify(result.data.list || []));
-                for (let i = 0; i < newList.length; i++) {
-                    let item = newList[i];
-                    if (i == 0) {
-                        item.pTitle = '第一天';
-                        item.imgName = 'yuanbao_200';
-                    } else if (i == 1) {
-                        item.pTitle = '第二天';
-                        item.imgName = 'yuanbao_300';
-                    } else if (i == 2) {
-                        item.pTitle = '第三天';
-                        item.imgName = 'yuanbao_400';
-                    } else if (i == 3) {
-                        item.pTitle = '第四天';
-                        item.imgName = 'yuanbao_600';
-                    } else if (i == 4) {
-                        item.pTitle = '第五天';
-                        item.imgName = 'yuanbao_800';
-                    } else if (i == 5) {
-                        item.pTitle = '第六天';
-                        item.imgName = 'yuanbao_900';
-                    } else if (i == 6) {
-                        item.pTitle = '第七天';
-                        item.imgName = 'yuanbao_1200';
-                    }
+                if (result.data.totalPage >= pageNum) {
+                    setState({
+                        pageNum: pageNum,
+                    });
                 }
+            } else if (paramsArr[0].isPre == 1) {
+                let pageCount = paramsArr[1];
                 setState({
-                    oldList: newList,
+                    newList: result.data.list || [],
+                    allPage: result.data.totalPage,
                 });
+                if (result.data.totalPage >= pageCount) {
+                    setState({
+                        pageCount: pageCount,
+                    });
+                }
             }
         },
     });
-    const { run: inviteactivityRun } = useRequest(
-        (sendingData = {}) => inviteactivityTab4(sendingData),
+    const { run: pointStatisticsRun } = useRequest(
+        (sendingData = {}) => pointStatisticsTab1(sendingData),
         {
             manual: true,
             onSuccess: (result: any) => {
                 setState({
-                    inviteObj: result.data || {},
+                    amountObj: result.data || {
+                        totalAmount: 0,
+                        totalPoint: 0,
+                    },
                 });
             },
         },
     );
-    const { run: newCallRun } = useRequest((sendingData = {}) => newCallTab4(sendingData), {
-        manual: true,
-        onSuccess: (result: any) => {
-            newWay();
-            Toast.show({
-                icon: 'success',
-                content: result.data,
-            });
-        },
-    });
-    const { run: oldReturnRun } = useRequest((sendingData = {}) => oldReturnTab4(sendingData), {
-        manual: true,
-        onSuccess: (result: any) => {
-            oldWay();
-            Toast.show({
-                icon: 'success',
-                content: result.data,
-            });
-        },
-    });
     // 方法
-    const newWay = () => {
-        callConfigRun({ recordType: 5 });
+    const detailsWay = (pageNum = 1) => {
+        giftListRun({ isPre: 2, page: pageNum, pageSize: 8 }, pageNum);
     };
-    const oldWay = () => {
-        callConfigRun({ recordType: 7 });
+    const newsWay = (pageCount = 1) => {
+        giftListRun({ isPre: 1, page: pageCount, pageSize: 4 }, pageCount);
     };
-    const xinWay = (item) => {
-        if (item.isApplied == 1 || item.isToday == 0) {
-            return;
-        }
+    const pointStatisticsWay = () => {
+        pointStatisticsRun();
+    };
+    const giftExchangeWay = (id) => {
         // handleBindPhone(() => {
-        newCallRun({ id: item.id, recordType: 5 });
+        exchangeRun({ giftId: id });
         // });
     };
-    const oldTake = (item) => {
-        if (item.isApplied == 1 || item.isToday == 0) {
-            return;
+    const previousPage = () => {
+        const { pageNum } = state;
+        if (pageNum > 1) {
+            let countPage = pageNum;
+            countPage = --countPage;
+            detailsWay(countPage);
         }
-        // handleBindPhone(() => {
-        oldReturnRun({ id: item.id, recordType: 7 });
-        // });
+    };
+    const nextPage = () => {
+        const { pageNum, totalPage } = state;
+        if (totalPage > pageNum) {
+            let countPage = pageNum;
+            countPage = ++countPage;
+            detailsWay(countPage);
+        }
+    };
+    const changeBatch = () => {
+        const { pageCount, allPage } = state;
+        if (allPage > pageCount) {
+            let countPage = pageCount;
+            countPage = ++countPage;
+            newsWay(countPage);
+        } else if (allPage == pageCount) {
+            newsWay(1);
+        }
     };
     useEffect(() => {
-        newWay();
-        inviteactivityRun();
+        detailsWay();
+        pointStatisticsWay();
     }, []);
-    const { newList, oldList, inviteObj } = state;
+
+    const { goodsList, pageNum, totalPage, newList, amountObj, allPage } = state;
     const { formatCon } = props;
     return (
-        <section className={styles.tab4}>
-            <TitleBox titleImg='title_05' recordType='tab04_1'>
-                <ActivityDescription illustrate={formatCon[12]}></ActivityDescription>
-                <div className={styles.pageBox} style={{ marginTop: '9.984px' }}>
-                    <button className={styles.titleCheck}></button>
-                </div>
-                <div className={tab3sty.leiji}>
-                    <p>被邀请人/邀请人同时获得元宝</p>
-                </div>
-                <div className={`${tab2sty.signInBox} ${styles.signInBox2}`}>
-                    <ul>
-                        {newList.map((item, index) => {
-                            return (
-                                <li
-                                    className={
-                                        !item.isApplied && !item.isToday && tab2sty.signOpacity
-                                    }
-                                    key={index}
-                                >
-                                    <p className={`${tab2sty.pTitle} ${styles.pTitle}`}>
-                                        {item.pTitle}
-                                    </p>
+        <section className={styles.Tab4Unit}>
+            <TitleBox titleImg='title_01' titleTime={formatCon[0]} recordType='tab01'>
+                <ActivityDescription illustrate={formatCon[1]} isShow='1'></ActivityDescription>
+            </TitleBox>
+            <div className={styles.amountBox}>
+                <img src={require('./img/title_com01.png')} />
+                <img src={require('./img/title_com02.png')} />
+                <div className={styles.yuanbao}>{amountObj.totalPoint}个</div>
+                <div className={styles.caijin}>{amountObj.totalAmount}元</div>
+            </div>
+            <div className={styles.exchange}>
+                <ul className={goodsList.length == 1 && styles.centerBT}>
+                    {goodsList.map((item, index) => {
+                        return (
+                            <li key={index}>
+                                {item.isNew == 1 && (
                                     <img
-                                        className={styles.imgName}
-                                        src={require(`./img/${item.imgName}.png`)}
-                                    />
-                                    <div>
-                                        <button
-                                            className={styles.tab4btn}
-                                            onClick={() => {
-                                                xinWay(item);
-                                            }}
-                                        >
-                                            {item.isApplied == 1 ? (
-                                                <span>已领取</span>
-                                            ) : (
-                                                <span>领取</span>
-                                            )}
-                                        </button>
-                                    </div>
-                                    <p className={`${tab2sty.virtualCoin} ${styles.virtualCoin}`}>
-                                        x{item.point}
-                                    </p>
-                                    {item.isApplied == 1 && (
-                                        <img
-                                            className={tab2sty.iconHook}
-                                            src={require('../tab2/img/icon_hook.png')}
-                                        />
-                                    )}
-                                </li>
-                            );
-                        })}
-                        <div style={{ clear: 'both' }}></div>
-                    </ul>
-                </div>
-            </TitleBox>
-            <TitleBox titleImg='headline_04'>
-                <label className={styles.invitationTitle}>手机端链接</label>
-                <div className={styles.butterfly}>
-                    <input className={styles.inpYr} disabled value={inviteObj.h5_domain || ''} />
-                    <CopyToClipboard
-                        text={inviteObj.h5_domain}
-                        onCopy={(_text, result) => {
-                            if (result) {
-                                Toast.show({
-                                    icon: 'success',
-                                    content: '复制成功!',
-                                });
-                            }
-                        }}
+                                        className={styles.tpNew}
+                                        src={require('./img/tp_new.png')}
+                                    ></img>
+                                )}
+                                <p className={styles.title}>{item.giftName}</p>
+                                <p className={styles.money}>
+                                    <span>{item.giftAmount}</span>元
+                                </p>
+                                <div className={styles.h5Img}>
+                                    <img src={item.h5Img}></img>
+                                </div>
+
+                                <p className={`${styles.moneyYT} ${styles.virtualCoin}`}>
+                                    x{item.point}
+                                </p>
+
+                                <button
+                                    className={styles.duihuan}
+                                    onClick={() => {
+                                        giftExchangeWay(item.id);
+                                    }}
+                                ></button>
+                            </li>
+                        );
+                    })}
+                    <div style={{ clear: 'both' }}></div>
+                </ul>
+            </div>
+            {!(totalPage == 0 || totalPage == 1) && (
+                <div className={`${styles.pageBox}`}>
+                    <button onClick={previousPage} className={pageNum == 1 && styles.signOpacity}>
+                        <span>上一页</span>
+                    </button>
+                    <button
+                        onClick={nextPage}
+                        className={pageNum == totalPage && styles.signOpacity}
                     >
-                        <button className={styles.tab4btn}>
-                            <span>复制</span>
-                        </button>
-                    </CopyToClipboard>
+                        <span>下一页</span>
+                    </button>
                 </div>
-                <label className={styles.invitationTitle}>WEB端链接</label>
-                <div className={styles.butterfly}>
-                    <input className={styles.inpYr} disabled value={inviteObj.site_domain || ''} />
-                    <CopyToClipboard
-                        text={inviteObj.site_domain}
-                        onCopy={(_text, result) => {
-                            if (result) {
-                                Toast.show({
-                                    icon: 'success',
-                                    content: '复制成功!',
-                                });
-                            }
-                        }}
-                    >
-                        <button className={styles.tab4btn}>
-                            <span>复制</span>
-                        </button>
-                    </CopyToClipboard>
+            )}
+            {newList.length != 0 && (
+                <div className={styles.giftBox}>
+                    <img src={require('../titleBox/img/headline_01.png')} />
                 </div>
-            </TitleBox>
-            <TitleBox titleImg='headline_05' recordType='tab04_2'>
-                <ActivityDescription illustrate={formatCon[13]} isShow='3'></ActivityDescription>
-                <div className={styles.pageBox} style={{ marginTop: '9.984px' }}>
-                    <button className={styles.titleDate}></button>
-                </div>
-                <div className={tab3sty.leiji}>
-                    <p>回归元宝</p>
-                </div>
-                <div className={`${tab2sty.signInBox} ${styles.signInBox2}`}>
-                    <ul>
-                        {oldList.map((item, index) => {
-                            return (
-                                <li
-                                    className={
-                                        !item.isApplied && !item.isToday && tab2sty.signOpacity
-                                    }
-                                    key={index}
-                                >
-                                    <p className={`${tab2sty.pTitle} ${styles.pTitle}`}>
-                                        {item.pTitle}
-                                    </p>
+            )}
+            <div className={`${styles.exchange} ${styles.newGift}`}>
+                <ul className={newList.length == 1 && styles.centerBT}>
+                    {newList.map((item, index) => {
+                        return (
+                            <li key={index}>
+                                {item.isNew == 1 && (
                                     <img
-                                        className={styles.imgName}
-                                        src={require(`./img/${item.imgName}.png`)}
-                                    />
-                                    <div>
-                                        <button
-                                            className={styles.tab4btn}
-                                            onClick={() => {
-                                                oldTake(item);
-                                            }}
-                                        >
-                                            {item.isApplied == 1 ? (
-                                                <span>已领取</span>
-                                            ) : (
-                                                <span>领取</span>
-                                            )}
-                                        </button>
-                                    </div>
-                                    <p className={`${tab2sty.virtualCoin} ${styles.virtualCoin}`}>
-                                        x{item.point}
-                                    </p>
-                                    {item.isApplied == 1 && (
-                                        <img
-                                            className={tab2sty.iconHook}
-                                            src={require('../tab2/img/icon_hook.png')}
-                                        />
-                                    )}
-                                </li>
-                            );
-                        })}
-                        <div style={{ clear: 'both' }}></div>
-                    </ul>
+                                        className={styles.tpNew}
+                                        src={require('./img/tp_new.png')}
+                                    ></img>
+                                )}
+                                <p className={styles.title}>{item.giftName}</p>
+                                <p className={styles.money}>
+                                    <span>{item.giftAmount}</span>元
+                                </p>
+                                <div className={styles.h5Img}>
+                                    <img src={item.h5Img}></img>
+                                </div>
+                                <p className={`${styles.moneyYT} ${styles.virtualCoin}`}>
+                                    x{item.point}
+                                </p>
+                            </li>
+                        );
+                    })}
+                    <div style={{ clear: 'both' }}></div>
+                </ul>
+            </div>
+            {!(allPage == 0 || allPage == 1) && (
+                <div className={`${styles.pageBox}`}>
+                    <button onClick={changeBatch}>
+                        <span>换一换</span>
+                    </button>
                 </div>
-            </TitleBox>
+            )}
             <TitleBox titleImg='headline_02'>
-                <Rules illustrate={formatCon[14]}></Rules>
+                <Rules illustrate={formatCon[2]}></Rules>
             </TitleBox>
         </section>
     );
 };
 
-export default Tab4;
+export default Tab4Unit;

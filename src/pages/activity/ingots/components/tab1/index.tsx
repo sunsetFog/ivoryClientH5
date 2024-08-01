@@ -1,239 +1,310 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useImperativeHandle, useRef } from 'react';
 import { useSetState, useRequest } from 'ahooks';
 // styles
 import styles from './index.module.scss';
-import { giftExchangeTab1, giftListTab1, pointStatisticsTab1 } from '../../services';
-
-// import { useBindPhone } from '@/utils/hooks/useBindPhone';
+import { dayApplyTab2, dayInfoTab2, timeApplyTab2 } from '../../services';
 import { Toast } from 'antd-mobile';
 // component
 import ActivityDescription from '../editor/activityDescription';
 import Rules from '../editor/rules';
 import TitleBox from '../titleBox';
-
-const Tab1 = function (props) {
+import { formatTime2 } from '../../utils';
+// import { useBindPhone } from '@/utils/hooks/useBindPhone';
+const Tab1Unit = function (props) {
     const [state, setState] = useSetState({
-        goodsList: [],
-        pageNum: 1,
-        totalPage: 0,
-        newList: [],
-        pageCount: 1,
-        allPage: 0,
-        amountObj: {
-            totalAmount: 0,
-            totalPoint: 0,
-        },
+        signRewardList: [],
+        signTimeRewardConfList: [],
+        isOk: false,
     });
-    const disposable = useRef(true);
+    const countdown = useRef(null);
     // const { handleBindPhone } = useBindPhone();
+    //用useImperativeHandle暴露一些外部ref能访问的属性
+    useImperativeHandle(props.onRef, () => {
+        return {
+            rewardInfo: rewardInfo,
+        };
+    });
     // 接口
-    const { run: exchangeRun } = useRequest((sendingData = {}) => giftExchangeTab1(sendingData), {
+    const { run: dayApplyRun } = useRequest((sendingData = {}) => dayApplyTab2(sendingData), {
         manual: true,
         onSuccess: (result: any) => {
-            pointStatisticsWay();
+            rewardInfo(true);
             Toast.show({
                 icon: 'success',
-                content: result.data.message,
+                content: result.message,
             });
         },
     });
-    const { run: giftListRun } = useRequest((sendingData = {}) => giftListTab1(sendingData), {
+    const { run: dayInfoRun } = useRequest((sendingData = {}) => dayInfoTab2(sendingData), {
         manual: true,
         onSuccess: (result: any, paramsArr: any) => {
-            if (disposable.current) {
-                disposable.current = false;
-                newsWay();
-            }
-            if (paramsArr[0].isPre == 2) {
-                let pageNum = paramsArr[1];
-                setState({
-                    goodsList: result.data.list || [],
-                    totalPage: result.data.totalPage,
-                });
-                if (result.data.totalPage >= pageNum) {
+            let value = paramsArr[1];
+            let signRewardList = JSON.parse(JSON.stringify(result.data.signRewardList || []));
+            let signTimeRewardConfList = JSON.parse(
+                JSON.stringify(result.data.signTimeRewardConfList || []),
+            );
+            for (let i = 0; i < signRewardList.length; i++) {
+                let item = signRewardList[i];
+                if (i == 0) {
+                    item.pTitle = '第一天';
+                    item.imgName = 'yuanbao_01';
+                } else if (i == 1) {
+                    item.pTitle = '第二天';
+                    item.imgName = 'yuanbao_01';
+                } else if (i == 2) {
+                    item.pTitle = '第三天';
+                    item.imgName = 'yuanbao_02';
+                } else if (i == 3) {
+                    item.pTitle = '第四天';
+                    item.imgName = 'yuanbao_02';
+                } else if (i == 4) {
+                    item.pTitle = '第五天';
+                    item.imgName = 'yuanbao_03';
+                } else if (i == 5) {
+                    item.pTitle = '第六天';
+                    item.imgName = 'yuanbao_04';
+                } else if (i == 6) {
+                    item.pTitle = '第七天';
+                    item.imgName = 'yuanbao_05';
+                }
+                if (value) {
+                    item.play = true;
+                } else {
+                    item.play = false;
+                }
+                if (item.isToday && item.isApplied) {
                     setState({
-                        pageNum: pageNum,
+                        isOk: true,
                     });
                 }
-            } else if (paramsArr[0].isPre == 1) {
-                let pageCount = paramsArr[1];
-                setState({
-                    newList: result.data.list || [],
-                    allPage: result.data.totalPage,
-                });
-                if (result.data.totalPage >= pageCount) {
-                    setState({
-                        pageCount: pageCount,
-                    });
+                item.fontSelected = '额外元宝100';
+            }
+
+            for (let i = 0; i < signTimeRewardConfList.length; i++) {
+                let item = signTimeRewardConfList[i];
+                if (item.countTime == 0) {
+                    item.timeTxt = '00:00:00';
+                } else {
+                    item.timeTxt = formatTime2(item.countTime);
                 }
             }
+            stopTime();
+            dingshiqi(signTimeRewardConfList);
+
+            setState({
+                signRewardList: signRewardList,
+                signTimeRewardConfList: signTimeRewardConfList,
+            });
         },
     });
-    const { run: pointStatisticsRun } = useRequest(
-        (sendingData = {}) => pointStatisticsTab1(sendingData),
-        {
-            manual: true,
-            onSuccess: (result: any) => {
-                setState({
-                    amountObj: result.data || {
-                        totalAmount: 0,
-                        totalPoint: 0,
-                    },
-                });
-            },
+    const { run: timeApplyRun } = useRequest((sendingData = {}) => timeApplyTab2(sendingData), {
+        manual: true,
+        onSuccess: (result: any) => {
+            Toast.show({
+                icon: 'success',
+                content: result.message,
+            });
+            rewardInfo();
         },
-    );
+    });
     // 方法
-    const detailsWay = (pageNum = 1) => {
-        giftListRun({ isPre: 2, page: pageNum, pageSize: 8 }, pageNum);
+    const rewardInfo = (value = false) => {
+        dayInfoRun({}, value);
     };
-    const newsWay = (pageCount = 1) => {
-        giftListRun({ isPre: 1, page: pageCount, pageSize: 4 }, pageCount);
+    const stopTime = () => {
+        if (countdown.current) {
+            clearInterval(countdown.current);
+        }
     };
-    const pointStatisticsWay = () => {
-        pointStatisticsRun();
+    const dingshiqi = (signTimeRewardConfList) => {
+        let arrBox = JSON.parse(JSON.stringify(signTimeRewardConfList));
+        countdown.current = setInterval(() => {
+            for (let i = 0; i < arrBox.length; i++) {
+                let item = arrBox[i];
+                if (item.countTime != 0 && item.highLight) {
+                    item.countTime = item.countTime - 1;
+                }
+                item.timeTxt = formatTime2(item.countTime);
+            }
+            setState({
+                signTimeRewardConfList: JSON.parse(JSON.stringify(arrBox)),
+            });
+        }, 1000);
     };
-    const giftExchangeWay = (id) => {
+    const dayApplyWay = (value = false) => {
+        if (value) {
+            Toast.show({
+                icon: 'success',
+                content: '今日元宝已领取，请明日再来',
+            });
+            return;
+        }
         // handleBindPhone(() => {
-        exchangeRun({ giftId: id });
+        dayApplyRun();
         // });
     };
-    const previousPage = () => {
-        const { pageNum } = state;
-        if (pageNum > 1) {
-            let countPage = pageNum;
-            countPage = --countPage;
-            detailsWay(countPage);
+    const timeApplyWay = (item) => {
+        if (item.isApplied) {
+            Toast.show({
+                icon: 'success',
+                content: '当前元宝已领取，不可重复领取',
+            });
+        } else if (!item.isApplied && item.highLight && item.countTime != 0) {
+            Toast.show({
+                icon: 'success',
+                content: '请等待倒计时结束时领取，谢谢',
+            });
+        } else if (!item.isApplied && !item.highLight) {
+            Toast.show({
+                icon: 'success',
+                content: '当前元宝不符合倒计时条件，不可领取',
+            });
         }
-    };
-    const nextPage = () => {
-        const { pageNum, totalPage } = state;
-        if (totalPage > pageNum) {
-            let countPage = pageNum;
-            countPage = ++countPage;
-            detailsWay(countPage);
+        if (
+            item.isApplied ||
+            (!item.isApplied && !item.highLight) ||
+            (!item.isApplied && item.highLight && item.countTime != 0)
+        ) {
+            return;
         }
-    };
-    const changeBatch = () => {
-        const { pageCount, allPage } = state;
-        if (allPage > pageCount) {
-            let countPage = pageCount;
-            countPage = ++countPage;
-            newsWay(countPage);
-        } else if (allPage == pageCount) {
-            newsWay(1);
-        }
+        // handleBindPhone(() => {
+        timeApplyRun({ id: item.signTimeRewardConf.id });
+        // });
     };
     useEffect(() => {
-        detailsWay();
-        pointStatisticsWay();
+        rewardInfo();
+        return () => {
+            stopTime();
+        };
     }, []);
-
-    const { goodsList, pageNum, totalPage, newList, amountObj, allPage } = state;
+    const { signRewardList, signTimeRewardConfList, isOk } = state;
     const { formatCon } = props;
     return (
-        <section className={styles.tab01}>
-            <TitleBox titleImg='title_01' titleTime={formatCon[0]} recordType='tab01'>
-                <ActivityDescription illustrate={formatCon[1]} isShow='1'></ActivityDescription>
+        <section className={styles.Tab1Unit}>
+            <TitleBox titleImg='title_02' recordType='tab02_1'>
+                <ActivityDescription illustrate={formatCon[3]}></ActivityDescription>
+                <div className={styles.signInBox}>
+                    <ul>
+                        {signRewardList.map((item, index) => {
+                            return (
+                                <li
+                                    className={
+                                        !item.isApplied && !item.isToday && styles.signOpacity
+                                    }
+                                    key={index}
+                                >
+                                    <p className={styles.pTitle}>{item.pTitle}</p>
+                                    <div className={styles.yuanbao}>
+                                        <img
+                                            src={require(`./img/${
+                                                item.imgName ? item.imgName : 'yuanbao_01'
+                                            }.png`)}
+                                        />
+                                        {index == 0 || index == 1 ? (
+                                            <p className={`${styles.virtualCoin}`}>
+                                                x{item.signRewardConf.point}
+                                            </p>
+                                        ) : (
+                                            <p className={`${styles.virtualCoin} ${styles.youhua}`}>
+                                                x{item.signRewardConf.point}
+                                            </p>
+                                        )}
+                                    </div>
+                                    {item.isApplied && (
+                                        <img
+                                            className={styles.iconHook}
+                                            src={require('./img/icon_hook.png')}
+                                        />
+                                    )}
+                                    {item.signRewardConf.extraPoint != 0 && (
+                                        <>
+                                            <img
+                                                className={styles.iconSelected}
+                                                src={require('./img/icon_selected.png')}
+                                            />
+                                            <span className={styles.fontSelected}>
+                                                额外元宝{item.signRewardConf.extraPoint}
+                                                {item.isApplied && item.isToday && item.play && (
+                                                    <span className={styles.jiayi}>+1</span>
+                                                )}
+                                            </span>
+                                        </>
+                                    )}
+                                </li>
+                            );
+                        })}
+                        <div style={{ clear: 'both' }}></div>
+                    </ul>
+                </div>
+                <div className={`${styles.pageBox}`}>
+                    {isOk ? (
+                        <button
+                            onClick={() => {
+                                dayApplyWay(true);
+                            }}
+                        >
+                            <span>今日已领取</span>
+                        </button>
+                    ) : (
+                        <button
+                            onClick={() => {
+                                dayApplyWay(false);
+                            }}
+                        >
+                            <span>签到领取</span>
+                        </button>
+                    )}
+                </div>
             </TitleBox>
-            <div className={styles.amountBox}>
-                <img src={require('./img/title_com01.png')} />
-                <img src={require('./img/title_com02.png')} />
-                <div className={styles.yuanbao}>{amountObj.totalPoint}个</div>
-                <div className={styles.caijin}>{amountObj.totalAmount}元</div>
-            </div>
-            <div className={styles.exchange}>
-                <ul className={goodsList.length == 1 && styles.centerBT}>
-                    {goodsList.map((item, index) => {
-                        return (
-                            <li key={index}>
-                                {item.isNew == 1 && (
-                                    <img
-                                        className={styles.tpNew}
-                                        src={require('./img/tp_new.png')}
-                                    ></img>
-                                )}
-                                <p className={styles.title}>{item.giftName}</p>
-                                <p className={styles.money}>
-                                    <span>{item.giftAmount}</span>元
-                                </p>
-                                <div className={styles.h5Img}>
-                                    <img src={item.h5Img}></img>
-                                </div>
-
-                                <p className={`${styles.moneyYT} ${styles.virtualCoin}`}>
-                                    x{item.point}
-                                </p>
-
-                                <button
-                                    className={styles.duihuan}
-                                    onClick={() => {
-                                        giftExchangeWay(item.id);
-                                    }}
-                                ></button>
-                            </li>
-                        );
-                    })}
-                    <div style={{ clear: 'both' }}></div>
-                </ul>
-            </div>
-            {!(totalPage == 0 || totalPage == 1) && (
-                <div className={`${styles.pageBox}`}>
-                    <button onClick={previousPage} className={pageNum == 1 && styles.signOpacity}>
-                        <span>上一页</span>
-                    </button>
-                    <button
-                        onClick={nextPage}
-                        className={pageNum == totalPage && styles.signOpacity}
-                    >
-                        <span>下一页</span>
-                    </button>
+            <TitleBox titleImg='headline_03' recordType='tab02_2'>
+                <ActivityDescription illustrate={formatCon[4]} isShow='3'></ActivityDescription>
+                <div className={styles.pageBox}>
+                    <button className={styles.titleTime}></button>
                 </div>
-            )}
-            {newList.length != 0 && (
-                <div className={styles.giftBox}>
-                    <img src={require('../titleBox/img/headline_01.png')} />
+                <div className={styles.timeBox}>
+                    <ul>
+                        {signTimeRewardConfList.map((item, index) => {
+                            return (
+                                <li
+                                    className={
+                                        !item.isApplied && !item.highLight && styles.signOpacity
+                                    }
+                                    key={index}
+                                >
+                                    <img src={require('./img/yuanbao_big.png')} />
+                                    <div className={styles.daojishi}>{item.timeTxt}</div>
+                                    <div className={styles.pageBox} style={{ margin: 0 }}>
+                                        <button
+                                            className={styles.lingqu}
+                                            onClick={() => {
+                                                timeApplyWay(item);
+                                            }}
+                                        >
+                                            {item.isApplied ? (
+                                                <span>已领取</span>
+                                            ) : item.countTime == 0 ? (
+                                                <span>领取</span>
+                                            ) : item.highLight ? (
+                                                <span>倒计时中</span>
+                                            ) : (
+                                                <span>领取</span>
+                                            )}
+                                        </button>
+                                    </div>
+                                    <p className={styles.virtualCoin}>
+                                        x{item.signTimeRewardConf.point}
+                                    </p>
+                                </li>
+                            );
+                        })}
+                    </ul>
                 </div>
-            )}
-            <div className={`${styles.exchange} ${styles.newGift}`}>
-                <ul className={newList.length == 1 && styles.centerBT}>
-                    {newList.map((item, index) => {
-                        return (
-                            <li key={index}>
-                                {item.isNew == 1 && (
-                                    <img
-                                        className={styles.tpNew}
-                                        src={require('./img/tp_new.png')}
-                                    ></img>
-                                )}
-                                <p className={styles.title}>{item.giftName}</p>
-                                <p className={styles.money}>
-                                    <span>{item.giftAmount}</span>元
-                                </p>
-                                <div className={styles.h5Img}>
-                                    <img src={item.h5Img}></img>
-                                </div>
-                                <p className={`${styles.moneyYT} ${styles.virtualCoin}`}>
-                                    x{item.point}
-                                </p>
-                            </li>
-                        );
-                    })}
-                    <div style={{ clear: 'both' }}></div>
-                </ul>
-            </div>
-            {!(allPage == 0 || allPage == 1) && (
-                <div className={`${styles.pageBox}`}>
-                    <button onClick={changeBatch}>
-                        <span>换一换</span>
-                    </button>
-                </div>
-            )}
+            </TitleBox>
             <TitleBox titleImg='headline_02'>
-                <Rules illustrate={formatCon[2]}></Rules>
+                <Rules illustrate={formatCon[5]}></Rules>
             </TitleBox>
         </section>
     );
 };
 
-export default Tab1;
+export default Tab1Unit;

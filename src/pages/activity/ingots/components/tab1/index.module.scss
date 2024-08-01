@@ -1,186 +1,147 @@
-.tab01 {
-  @import "@/pages/activity/ingots/common.scss";
-  @mixin summer() {
-    background: linear-gradient(180deg, #FFF 0%, #FFEAC1 87.14%, #FFFBF3 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  $lineOfHeight: 43.16px;
-  .amountBox {
-    width: 100%;
-    height: $lineOfHeight;
-    padding: 0 5.2px;
-    box-sizing: border-box;
-    position: relative;
-    img:nth-of-type(1) {
-      width: calc((100% - 9.88px)/2);
-      float: left;
-      margin-right: 9.88px;
-    }
-    img:nth-of-type(2) {
-      width: calc((100% - 9.88px)/2);
-      float: right;
-    }
 
-    .yuanbao, .caijin {
-      width: 23.3%;
-      height: 100%;
-      text-align: center;
-      line-height: calc(#{$lineOfHeight} + 2.08px);
-      font-size: 15.08px;
-      font-weight: 800;
-      position: absolute;
-      top: 0;
-      @include summer();
-    }
-    .yuanbao {
-      left: 21.7%;
-    }
-    .caijin {
-      right: 5.2%;
-    }
-  }
-  .exchange {
+
+.Tab1Unit {
+  @import "@/pages/activity/ingots/common.scss";
+  .timeBox {
     width: 100%;
-    margin: 24.96px 0 0 0;
-    .centerBT {
-      display: flex;
-      justify-content: center;
-    }
+    overflow: hidden;
     ul {
       width: 100%;
-      padding: 0 11.96px;
-      box-sizing: border-box;
       li {
-        width: 175.24px;
-        height: 240.76px;
-        background-image: url('./img/box_01.png');
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
-        margin-top: 11.96px;
-        position: relative;
-        @include theme-night() {
-          background-image: url('./img/box_01_night.png');
-          background-size: 100% 100%;
-          background-repeat: no-repeat;
-        }
-        .tpNew {
-          width: 32.24px;
-          height: 40.04px;
-          position: absolute;
-          right: -11.96px;
-          top: -2.08px;
-        }
-        .virtualCoin {
-          font-size: 14.04px;
-          height: 30.16px;
-          line-height: 29.12px;
-          left: 40.04px;
-          bottom: 28.08px;
-        }
-
-        .title {
-          width: 100%;
-          text-align: center;
-          color: #947F8B;
-          font-size: 11.96px;
-          font-weight: 500;
-          position: absolute;
-          left: 0px;
-          top: 15.08px;
-          padding: 0 18.2px 0 20.8px;
-          box-sizing: border-box;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          @include theme-night() {
-            color: #fff;
-          }
-        }
-        .money {
-          width: 100%;
-          text-align: center;
-          color: #FF2E00;
-          font-size: 11.96px;
-          font-weight: 500;
-          position: absolute;
-          left: 0px;
-          top: 32.24px;
-          @include theme-night() {
-            color: #fff;
-          }
-          span {
-            font-size: 19.76px;
-            font-weight: 700;
-          }
-        }
-        .h5Img {
-          width: 140.92px;
-          height: 110.24px;
-          border-radius: 11.96px;
-          border: 2.08px solid #FF465E;
-          background: linear-gradient(180deg, #FFFBE8 0%, #FFF5C3 100%);
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          position: absolute;
-          left: 20.8px;
-          top: 60.84px;
-          img {
-            width: 83.2px;
-            height: 99.84px;
-          }
-        }
-        .duihuan {
-          width: 47.84px;
-          height: 26px;
-          position: absolute;
-          right: 9.88px;
-          bottom: 32.24px;
-        }
-      }
-      li:nth-of-type(odd) {
+        width: 33.3%;
+        height: 175.24px;
         float: left;
-      }
-      li:nth-of-type(even) {
-        float: right;
-      }
-      li:nth-of-type(1), li:nth-of-type(2) {
-        margin-top: 0px;
+        margin-top: 19.76px;
+        padding: 0 3.12px;
+        box-sizing: border-box;
+        position: relative;
+        .virtualCoin {
+          @extend .moneyYT;
+          width: 54.6px;
+          height: 22.88px;
+          line-height: 22.36px;
+          left: 47.84px;
+          top: 71.24px;
+        }
+
+        img {
+          width: 100%;
+          height: 99.84px;
+        }
+
+        .daojishi {
+          width: 100%;
+          height: 19.76px;
+          text-align: center;
+          line-height: 19.76px;
+          font-size: 15.08px;
+          color: #FF3946;
+          font-weight: 600;
+          margin: 5.2px 0;
+        }
       }
     }
   }
 
-  .giftBox {
+}
+
+
+.signInBox {
+  @import "@/pages/activity/ingots/common.scss";
+  width: calc(100% + 19.76px);
+  margin-left: -9.88px;
+  ul {
     width: 100%;
-    height: 104px;
-    display: flex;
-    justify-content: center;
-    margin-top: 30.16px;
-    img {
-      width: 300.04px;
-      height: 100%;
-    }
-  }
-  .newGift {
-    ul {
-      li {
-        background-image: url('./img/box_02.png');
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
+    $liLeft: calc((100% - 33.3%*2 - 30.16px)/2);
+    li {
+      width: 33.33%;
+      float: left;
+      margin-top: 21.84px;
+      padding: 0 3.12px 15.08px 3.12px;
+      box-sizing: border-box;
+      position: relative;
+
+      .pTitle {
+        width: 100%;
+        height: 17.16px;
+        text-align: center;
+        color: #FF3946;
+        font-size: 13px;
+        margin-bottom: 3.12px;
         @include theme-night() {
-          background-image: url('./img/box_02_night.png');
-          background-size: 100% 100%;
-          background-repeat: no-repeat;
-        }
-        .virtualCoin {
-          height: 30.16px;
-          line-height: 29.12px;
-          left: 59.8px;
-          bottom: 27.56px;
+          color: #fff;
         }
       }
+
+      .yuanbao {
+        width: 100%;
+        height: 127.92px;
+        position: relative;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .virtualCoin {
+        @extend .moneyYT;
+        width: 54.6px;
+        height: 24.96px;
+        line-height: 24.96px;
+        left: 50.44px;
+        bottom: 0.884px;
+      }
+      .youhua {
+        bottom: 0.52px;
+        line-height: 26px;
+      }
+      .iconHook {
+        width: 24.96px;
+        height: 24.96px;
+        position: absolute;
+        right: -6.76px;
+        top: 2.08px;
+      }
+      .iconSelected {
+        width: 11.96px;
+        height: 11.96px;
+        position: absolute;
+        left: 14.04px;
+        bottom: 0px;
+      }
+      .fontSelected {
+        font-size: 11.96px;
+        color: #FF7511;
+        position: absolute;
+        left: 30.16px;
+        bottom: 0px;
+        display: inline-block;
+      }
+      @keyframes overturn {
+        0% {
+          opacity: 1;
+        }
+        60% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+      .jiayi {
+        @extend .fontSelected;
+        left: auto;
+        right: -15.6px;
+        bottom: 4.16px;
+        opacity: 0;
+        animation: overturn 3s linear;
+      }
+
+    }
+
+    li:nth-of-type(1),
+    li:nth-of-type(3) {
+      margin-left: $liLeft;
+      margin-right: 30.16px;
     }
   }
 }

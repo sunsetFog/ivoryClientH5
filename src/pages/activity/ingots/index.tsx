@@ -46,13 +46,13 @@ const IngotsUnit = () => {
                         );
                     })}
                 </div>
-                {activeIndex == 3 && <Tab1 formatCon={formatCon}></Tab1>}
+                {activeIndex == 0 && <Tab1 formatCon={formatCon}></Tab1>}
 
-                {activeIndex == 0 && <Tab2 formatCon={formatCon}></Tab2>}
+                {activeIndex == 1 && <Tab2 formatCon={formatCon}></Tab2>}
 
-                {activeIndex == 1 && <Tab3 formatCon={formatCon}></Tab3>}
+                {activeIndex == 2 && <Tab3 formatCon={formatCon}></Tab3>}
 
-                {activeIndex == 2 && <Tab4 formatCon={formatCon}></Tab4>}
+                {activeIndex == 3 && <Tab4 formatCon={formatCon}></Tab4>}
             </main>
         </section>
     );
