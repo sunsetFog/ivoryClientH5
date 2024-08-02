@@ -4,7 +4,7 @@ import { useSetState, useRequest } from 'ahooks';
 import styles from './index.module.scss';
 import tab1sty from '../tab1/index.module.scss';
 import { depositApplyTab2, depositInfoTab2 } from '../../services';
-// import { useBindPhone } from '@/utils/hooks/useBindPhone';
+// import { useBindPhone } from '@/@energy/ivoryDesign/@utils/hooks/useBindPhone';
 // component
 import TitleBox from '../titleBox';
 import ActivityDescription from '../editor/activityDescription';

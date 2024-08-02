@@ -3,9 +3,9 @@ import { useSetState, useRequest } from 'ahooks';
 // styles
 import styles from './index.module.scss';
 import { betApplyTab3, betInfoTab3 } from '../../../services';
-import { fixedXssContent } from '@/utils/fixedXss';
+import { fixedXssContent } from '@/@energy/ivoryDesign/@utils/security/fixedXss';
 import { Toast } from 'antd-mobile';
-// import { useBindPhone } from '@/utils/hooks/useBindPhone';
+// import { useBindPhone } from '@/@energy/ivoryDesign/@utils/hooks/useBindPhone';
 
 const tableUnit = function (props) {
     const [state, setState] = useSetState({

@@ -9,7 +9,7 @@ import dayjs from 'dayjs';
 import { formatText, monthlyRange } from './date';
 import { DatePicker } from 'antd-mobile';
 import TitleBox from '../titleBox';
-import { fixedXssContent } from '@/utils/fixedXss';
+import { fixedXssContent } from '@/@energy/ivoryDesign/@utils/security/fixedXss';
 const recordModal = function (props) {
     const [state, setState] = useSetState({
         showModal: false,

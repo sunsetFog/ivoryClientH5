@@ -11,7 +11,7 @@ import ActivityDescription from '../editor/activityDescription';
 import Rules from '../editor/rules';
 import TitleBox from '../titleBox';
 import { Toast } from 'antd-mobile';
-// import { useBindPhone } from '@/utils/hooks/useBindPhone';
+// import { useBindPhone } from '@/@energy/ivoryDesign/@utils/hooks/useBindPhone';
 
 const Tab3Unit = function (props) {
     const [state, setState] = useSetState({

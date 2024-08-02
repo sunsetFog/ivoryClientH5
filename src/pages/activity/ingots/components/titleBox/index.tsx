@@ -1,7 +1,7 @@
 import React from 'react';
 // styles
 import styles from './index.module.scss';
-import { fixedXssContent } from '@/utils/fixedXss';
+import { fixedXssContent } from '@/@energy/ivoryDesign/@utils/security/fixedXss';
 import RecordModal from '../recordModal';
 
 const titleBox = function (props) {

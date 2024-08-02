@@ -1,4 +1,4 @@
-import { post, get } from '@/utils/request';
+import { post, get } from '@/@energy/ivoryDesign/@http/request';
 let domain = 'http://localhost:8062/sky';
 
 // 每日签到接口

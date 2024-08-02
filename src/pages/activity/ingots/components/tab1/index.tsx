@@ -9,7 +9,7 @@ import ActivityDescription from '../editor/activityDescription';
 import Rules from '../editor/rules';
 import TitleBox from '../titleBox';
 import { formatTime2 } from '../../utils';
-// import { useBindPhone } from '@/utils/hooks/useBindPhone';
+// import { useBindPhone } from '@/@energy/ivoryDesign/@utils/hooks/useBindPhone';
 import SignInModal from './signInModal';
 const Tab1Unit = function (props) {
     const [state, setState] = useSetState({

@@ -4,7 +4,7 @@ import { useSetState, useRequest } from 'ahooks';
 import styles from './index.module.scss';
 import { giftExchangeTab4, giftListTab4, pointStatisticsTab4 } from '../../services';
 
-// import { useBindPhone } from '@/utils/hooks/useBindPhone';
+// import { useBindPhone } from '@/@energy/ivoryDesign/@utils/hooks/useBindPhone';
 import { Toast } from 'antd-mobile';
 // component
 import ActivityDescription from '../editor/activityDescription';

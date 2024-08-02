@@ -4,7 +4,7 @@ import { useSetState, useRequest } from 'ahooks';
 import styles from './index.module.scss';
 import { adRecord, dayApplyTab1 } from '../../../services';
 // component
-// import { useBindPhone } from '@/utils/hooks/useBindPhone';
+// import { useBindPhone } from '@/@energy/ivoryDesign/@utils/hooks/useBindPhone';
 
 /*
 监听路由变化，在活动里弹出窗口

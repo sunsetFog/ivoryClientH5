@@ -2,7 +2,7 @@ import React from 'react';
 // styles
 import styles from './index.module.scss';
 import { formatContentItem } from '../../../constants';
-import { fixedXssContent } from '@/utils/fixedXss';
+import { fixedXssContent } from '@/@energy/ivoryDesign/@utils/security/fixedXss';
 
 const activityDescription = function (props) {
     const { illustrate, isShow = 'all' } = props;
