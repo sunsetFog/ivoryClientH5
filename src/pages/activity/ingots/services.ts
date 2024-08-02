@@ -5,125 +5,107 @@ let domain = 'http://localhost:8062/sky';
 export function dayApplyTab1(params) {
     return post(domain + '/shop/list', {
         body: JSON.stringify(params),
-        transformResponse: (data) => data,
     });
 }
 // 时间间隔签到接口
 export function timeApplyTab1(params) {
     return post(domain + '/shop/list', {
         body: JSON.stringify(params),
-        transformResponse: (data) => data,
     });
 }
 // 奖励配置信息
 export function dayInfoTab1(params) {
     return post(domain + '/shop/list', {
         body: JSON.stringify(params),
-        transformResponse: (data) => data,
     });
 }
 // 礼物列表｜预发礼物列表
 export function giftListTab4(params) {
     return post(domain + '/shop/list', {
         body: JSON.stringify(params),
-        transformResponse: (data) => data,
     });
 }
 // 兑换礼物
 export function giftExchangeTab4(params) {
     return post(domain + '/shop/list', {
         body: JSON.stringify(params),
-        transformResponse: (data) => data,
     });
 }
 // 获取本月剩余元宝数量，累计兑换彩金
 export function pointStatisticsTab4(params) {
     return post(domain + '/shop/list', {
         body: JSON.stringify(params),
-        transformResponse: (data) => data,
     });
 }
 // 申请存款奖励
 export function depositApplyTab2(params) {
     return post(domain + '/shop/list', {
         body: JSON.stringify(params),
-        transformResponse: (data) => data,
     });
 }
 // 存款奖励配置信息
 export function depositInfoTab2(params) {
     return post(domain + '/shop/list', {
         body: JSON.stringify(params),
-        transformResponse: (data) => data,
     });
 }
 // 投注活动奖励信息
 export function betInfoTab3(params) {
     return post(domain + '/shop/list', {
         body: JSON.stringify(params),
-        transformResponse: (data) => data,
     });
 }
 // 投注活动奖励申请
 export function betApplyTab3(params) {
     return post(domain + '/shop/list', {
         body: JSON.stringify(params),
-        transformResponse: (data) => data,
     });
 }
 // 新人召唤
 export function newCallTab3(params) {
     return post(domain + '/shop/list', {
         body: JSON.stringify(params),
-        transformResponse: (data) => data,
     });
 }
 // 好友回归
 export function oldReturnTab3(params) {
     return post(domain + '/shop/list', {
         body: JSON.stringify(params),
-        transformResponse: (data) => data,
     });
 }
 // 活动配置
 export function callConfigTab3(params) {
     return post(domain + '/shop/list', {
         body: JSON.stringify(params),
-        transformResponse: (data) => data,
     });
 }
 // 投注记录查看
 export function betHistoryModal(params) {
     return post(domain + '/shop/list', {
         body: JSON.stringify(params),
-        transformResponse: (data) => data,
     });
 }
 // 兑换礼物记录列表-老友回归元宝领取记录-新人召唤元宝领取记录
 export function changeRecordModal(params) {
     return post(domain + '/shop/list', {
         body: JSON.stringify(params),
-        transformResponse: (data) => data,
     });
 }
 // 邀请
 export function inviteactivityTab3(params) {
     return post(domain + '/shop/list', {
         body: JSON.stringify(params),
-        transformResponse: (data) => data,
     });
 }
 // 获取新配置活动列表
 export function getNewActivity(params) {
     return post(domain + '/shop/list', {
         body: JSON.stringify(params),
-        transformResponse: (data) => data,
     });
 }
 // 统计访问数量
 export function adRecord(params) {
     return post(domain + '/shop/list', {
         body: JSON.stringify(params),
-        transformResponse: (data) => data,
     });
 }
