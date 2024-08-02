@@ -2,7 +2,7 @@ import React, { Component, createRef } from 'react';
 import styles from './index.modules.scss';
 import { venus } from './constants';
 import withNavigation from '@/@energy/ivoryDesign/@higherOrder/withNavigation';
-import { validateImgUrl } from './ajax';
+import { validateImgUrl } from '@/@energy/ivoryDesign/@http/ajax/verificationCode';
 class Login extends Component {
     state = {
         checkActive: false,

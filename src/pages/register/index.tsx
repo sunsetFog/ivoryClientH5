@@ -3,7 +3,7 @@ import styles from './index.modules.scss';
 import { venus } from './constants';
 import withNavigation from '@/@energy/ivoryDesign/@higherOrder/withNavigation';
 import { Popup } from 'antd-mobile';
-import { validateImgUrl } from '../login/ajax';
+import { validateImgUrl } from '@/@energy/ivoryDesign/@http/ajax/verificationCode';
 class Register extends Component {
     state = {
         focusActive1: false,
