@@ -1,0 +1,40 @@
+.tagView {
+    position: fixed;
+    top: 230px;
+    right: 0;
+    z-index: 998;
+    width: 70px;
+    height: 40px;
+    padding-right: 5px;
+    font-size: 14px;
+    line-height: 38px;
+    text-align: right;
+
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 100% 100%;
+    @include theme-light() {
+        color: #31455a;
+        background-image: url('./img/btn_share_drag.png');
+    }
+
+    @include theme-night() {
+        color: #fff;
+        background-image: url('./img/btn_share_drag_night.png');
+    }
+}
+// 同时拥有这两个类的元素
+.tagView.move {
+    width: 65px;
+    height: 40px;
+    padding-right: 12.5px;
+    box-sizing: content-box;
+    background-size: 100% 100%;
+    @include theme-light() {
+        background-image: url('./img/btn_share_drag_move.png');
+    }
+
+    @include theme-night() {
+        background-image: url('./img/btn_share_drag_move_night.png');
+    }
+}
