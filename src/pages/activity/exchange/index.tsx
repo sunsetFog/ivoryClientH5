@@ -7,15 +7,30 @@ import HeaderUnit from '@/components/headerUnit';
 import TabPanel from './components/tabPanel';
 import pleaseToDo from '@/components/pleaseToDo';
 import CustomModal from '@/components/customModal';
+import LazyLoad from 'react-lazyload';
 /*
 查看更多&收起
 */
 function exchange() {
     const { pleaseLogin, pleaseBindPhone } = pleaseToDo();
     const recRef = useRef<any>();
-    const [giftList2, setGiftOfList2] = useState(giftList1);
+    let giftBox = [
+        ...giftList1,
+        ...giftList1,
+        ...giftList1,
+        ...giftList1,
+        ...giftList1,
+        ...giftList1,
+        ...giftList1,
+        ...giftList1,
+        ...giftList1,
+        ...giftList1,
+        ...giftList1,
+        ...giftList1,
+    ];
+    const [giftList2, setGiftOfList2] = useState(giftBox);
     const [pageNum, setPageOfNum] = useState(1);
-    const [totalPage, setTotal] = useState(Math.ceil(giftList1.length / 4));
+    const [totalPage, setTotal] = useState(Math.ceil(giftBox.length / 4));
 
     const pageWay = () => {
         console.log('--pageWay--', totalPage, pageNum);
@@ -52,7 +67,9 @@ function exchange() {
                         return (
                             <li key={index}>
                                 <div className={styles.cartoon}>
-                                    <img src={item.img_url} />
+                                    <LazyLoad height={index * 200} offset={index * 200}>
+                                        <img src={item.img_url} />
+                                    </LazyLoad>
                                 </div>
                                 <div className={styles.bean}>{item.giftName}</div>
                                 <div className={styles.spring}>{item.jackpot}元</div>
