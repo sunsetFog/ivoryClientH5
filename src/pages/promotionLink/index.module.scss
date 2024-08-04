@@ -1,0 +1,123 @@
+.promotionLink {
+    width: 100%;
+    padding: 14px;
+    .avocados {
+        width: 100%;
+        ul {
+            width: 100%;
+            li {
+                width: 100%;
+                height: 64px;
+                background: #fff;
+                border: 1px solid #f1f1f3;
+                border-radius: 8px;
+                padding: 12px 16px;
+                &:nth-child(n+2) {
+                    margin-top: 12px;
+                }
+                .sweetcorn {
+                    width: 60%;
+                    height: 100%;
+                    float: left;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    p {
+                        width: 100%;
+                    }
+                    p:nth-of-type(1) {
+                        color: #2f3035;
+                        font-size: 14px;
+                        font-weight: 700;
+                    }
+                    p:nth-of-type(2) {
+                        color: #757884;
+                        font-size: 12px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                    }
+                }
+                .eggplants {
+                    width: 40%;
+                    height: 100%;
+                    float: right;
+                    display: flex;
+                    justify-content: right;
+                    align-items: center;
+                    button {
+                        height: 28px;
+                        background-color: #f1f1f3;
+                        border-radius: 4px;
+                    }
+                    button:nth-of-type(1) {
+                        width: 40px;
+                        background-image: url('./img/download.png');
+                        background-repeat: no-repeat;
+                        background-size: 16px 16px;
+                        background-position: center center;
+                    }
+                    button:nth-of-type(2) {
+                        width: 66px;
+                        margin-left: 4px;
+                        color: #757884;
+                        font-size: 12px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        img {
+                            width: 16px;
+                            height: 16px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.broccoli {
+    width: 340px;
+    padding: 20px 16px;
+    border-radius: 12px;
+    overflow: hidden;
+    .spinach {
+        width: 100%;
+        height: 48px;
+        background-image: url('./img/logo.png');
+        background-repeat: no-repeat;
+        background-size: 144px 100%;
+        background-position: center center;
+        margin-bottom: 20px;
+    }
+    .cucumbers {
+        width: 100%;
+        height: 260px;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+    .sweet {
+        font-weight: 400;
+        color: #5e606a;
+        text-align: center;
+        font-size: 12px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+    .artichokes {
+        width: 100%;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        button {
+            width: 200px;
+            height: 36px;
+            color: #fff;
+            font-size: 14px;
+            background: #179cff;
+            border-radius: 4px;
+        }
+    }
+}

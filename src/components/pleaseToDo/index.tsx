@@ -47,7 +47,7 @@ function pleaseToDo() {
         // ReactDOM.render(hamburger, elem);
     };
     const pleaseBindPhone = (callback = () => {}) => {
-        let flag = true;
+        let flag = false;
         if (flag) {
             return callback();
         }

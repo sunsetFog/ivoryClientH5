@@ -38,8 +38,9 @@ function customModal({ children, title, onRef, show }: ActivityRecordModalPropsT
     }, [isVisible]);
     return isVisible ? (
         <article className={styles.customModal} onClick={closeWay}>
-            <main onClick={defaultWay}>
-                <header>{title || '温馨提示'}</header>
+            <main onClick={defaultWay} id='toImg'>
+                {title ? <header>{title}</header> : null}
+
                 {children}
             </main>
         </article>
