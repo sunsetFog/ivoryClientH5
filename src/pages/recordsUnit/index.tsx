@@ -31,9 +31,11 @@ function recordsUnit() {
     };
     const time2Sure = (obj: any) => {
         setTitle2(obj.title);
+        setTimeOfActive2(false);
     };
     const time3Sure = (obj: any) => {
         setTitle3(obj.title);
+        setTimeOfActive3(false);
     };
     return (
         <section className={styles.recordsUnit}>

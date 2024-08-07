@@ -8,7 +8,9 @@ interface ActivityRecordModalPropsType {
     onRef?: any; // ref
     show?: boolean; // 展示
 }
-
+/*
+弹窗
+*/
 function customModal({ children, title, onRef, show }: ActivityRecordModalPropsType) {
     useImperativeHandle(onRef, () => {
         return {

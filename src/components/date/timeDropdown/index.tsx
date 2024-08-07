@@ -21,13 +21,14 @@ function timeDropdown({ onRef, show, time3Sure }: PropsApi) {
     });
     const { minDate, maxDate } = getRecordDatePickerRange(3);
     const recRef = useRef<any>();
-    const [timeActive, setTimeOfActive] = useState(0);
+    const [timeActive, setTimeOfActive] = useState(-1);
     const [startTime, setStartOfTime] = useState(dayjs());
     const [endTime, setEndOfTime] = useState(dayjs());
     const [pizzaAtive1, setPizzaOfActive1] = useState(false);
     const [pizzaAtive2, setPizzaOfActive2] = useState(false);
     const initWay = (topNum: number) => {
         recRef.current.initWay(topNum);
+        setTimeOfActive(-1);
         setPizzaOfActive1(false);
         setPizzaOfActive2(false);
     };
