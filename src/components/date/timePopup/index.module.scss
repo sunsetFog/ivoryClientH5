@@ -1,0 +1,109 @@
+.timePopup {
+    width: 100%;
+    height: 560px;
+    padding: 24px 14px;
+
+    label {
+        width: 100%;
+        color: #263440;
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 16px;
+        display: block;
+    }
+    .cabbage {
+        width: 100%;
+        height: 34px;
+        margin-bottom: 24px;
+        ul {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            li {
+                width: calc((100% - 30px) / 4 );
+                height: 100%;
+                border: 1px solid #c1c7cd;
+                color: #263440;
+                font-size: 14px;
+                border-radius: 4px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                &.peaActive {
+                    color: #6ac4ff;
+                    background: #ebf7ff;
+                    border: 1px solid #6ac4ff;
+                }
+                img {
+                    width: 20px;
+                    height: 20px;
+                    position: absolute;
+                    right: -1px;
+                    bottom: -1px;
+                }
+            }
+        }
+    }
+    .broccoli {
+        width: 100%;
+        color: #6f7d8b;
+        font-size: 12px;
+        margin-bottom: 16px;
+    }
+    .peppers {
+        width: 100%;
+        height: 45px;
+        margin-bottom: 12px;
+        display: flex;
+        justify-content: space-between;
+        .zippy {
+            color: #6ac4ff !important;
+            border-bottom: 1px solid #6ac4ff !important;
+        }
+        .jello, .rice {
+            width: calc((100% - 38px) / 2);
+            height: 100%;
+            color: #6f7d8b;
+            font-size: 18px;
+            border-bottom: 1px solid #c1c7cd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .jello {
+
+        }
+        .coke {
+            width: 38px;
+            height: 100%;
+            font-weight: 500;
+            color: #19232d;
+            font-size: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .rice {
+        }
+    }
+    .chocolate {
+        width: 100%;
+        color: #ed8936;
+        font-size: 12px;
+        text-align: center;
+        margin-bottom: 12px;
+    }
+}
+
+.leeks:nth-of-type(1) {
+    width: 175px !important;
+    background: url('./img/icon1_left.png') 0 0 no-repeat, url('./img/icon1_right.png') 100% 0 no-repeat, url('./img/icon1_center.png') 0 0 repeat-x !important;
+    background-size: auto 100% !important;
+}
+.leeks:nth-of-type(2) {
+    width: 175px !important;
+    background: url('./img/icon2_left.png') 0 0 no-repeat, url('./img/icon2_right.png') 100% 0 no-repeat, url('./img/icon2_center.png') 0 0 repeat-x !important;
+    background-size: auto 100% !important;
+}

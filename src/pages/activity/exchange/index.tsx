@@ -46,7 +46,7 @@ function exchange() {
         setPageOfNum(1);
     };
     const sureWay = () => {
-        pleaseLogin(() => {
+        pleaseBindPhone(() => {
             recRef.current.initWay();
         });
     };

@@ -1,0 +1,59 @@
+.recordsUnit {
+    width: 100%;
+    min-height: 100%;
+    padding-bottom: 20px;
+    @include theme-light() {
+        background-color: rgb(231, 238, 246);
+    }
+    @include theme-night() {
+        background-color: #0d1014;
+    }
+    .garlic {
+        width: 100%;
+        padding: 10px 15px;
+        background: #fff;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        button {
+            width: fit-content;
+            height: 34px;
+            padding: 0 30px;
+            background: #f7faff;
+            color: #303442;
+            border-radius: 25px;
+            &:nth-child(n+2) {
+                margin-left: 10px;
+            }
+        }
+        img {
+            width: 12px;
+            height: 12px;
+            margin-left: 4px;
+            transition: all .1s;
+            &.lettuce {
+                transform: rotate(180deg);
+            }
+            &.onions {
+                transform: rotate(0deg);
+            }
+        }
+    }
+    .noData {
+        width: 100%;
+        margin-top: 70px;
+        div {
+            width: 100%;
+            height: 208px;
+            background-image: url('./img/no_data.png');
+            background-repeat: no-repeat;
+            background-size: 290px 100%;
+            background-position: center center;
+        }
+        p {
+            color: #98a2ac;
+            font-size: 14px;
+            text-align: center;
+        }
+    }
+}
