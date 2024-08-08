@@ -3,11 +3,16 @@ import React, { useState, useRef } from 'react';
 import styles from './index.module.scss';
 import HeaderUnit from '@/components/headerUnit';
 import AreaCode from './components/areaCode';
+import { useNavigate } from 'react-router-dom';
 
 const authentication = () => {
+    const navigate = useNavigate();
     const recRef = useRef<any>();
     const areaWay = () => {
         recRef.current.initWay();
+    };
+    const goWay = () => {
+        navigate('/authentication/bindBankCard');
     };
     return (
         <div className={styles.authentication}>
@@ -42,7 +47,9 @@ const authentication = () => {
                 <div className={styles.cauliflower}>获取验证码</div>
             </div>
             <div className={styles.magic}></div>
-            <button className={styles.fabulous}>下一步</button>
+            <button className={styles.fabulous} onClick={goWay}>
+                下一步
+            </button>
             <AreaCode onRef={recRef} show={true}></AreaCode>
         </div>
     );

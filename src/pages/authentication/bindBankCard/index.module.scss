@@ -1,0 +1,139 @@
+.bindBankCard {
+    width: 100%;
+    padding: 8px 14px;
+    .summer {
+        width: 100%;
+        line-height: 1.6;
+        background-color: #f7faff;
+        margin-bottom: 12px;
+        color: #5b9afd;
+        font-size: 12px;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        padding: 8px 8px 8px 28px;
+        position: relative;
+        border-radius: 4px;
+        img {
+            width: 16px;
+            height: 16px;
+            position: absolute;
+            left: 8px;
+            top: 8px;
+        }
+    }
+    .autumn {
+        width: 100%;
+        height: 36px;
+        font-weight: 600;
+        color: #303442;
+        font-size: 14px;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+    }
+    .tomato {
+        width: 100%;
+        height: 40px;
+        margin-bottom: 12px;
+        ul {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: left;
+            li {
+                width: 102px;
+                height: 100%;
+                transition: all .3s;
+                border: 1px solid #e4e6ed;
+                border-radius: 8px;
+                color: #303442;
+                font-size: 14px;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                &:nth-child(n+2) {
+                    margin-left: 10px;
+                }
+                &.teeActive {
+                    background-color: #f7faff;
+                    border-color: #5b9afd;
+                }
+                .hotDog {
+                    width: 20px;
+                    height: 20px;
+                    margin-right: 8px;
+                }
+                .cake {
+                    width: 16px;
+                    height: 16px;
+                    position: absolute;
+                    right: 0;
+                    bottom: 0;
+                }
+            }
+        }
+    }
+    .scenery {
+        width: 100%;
+        height: 44px;
+        padding: 0 12px;
+        border: 1px solid #e4e6ed;
+        border-radius: 8px;
+        display: flex;
+        @mixin beautiful() {
+            height: 24px;
+            color: #303442;
+            font-size: 14px;
+        }
+        .noodles {
+            width: 100%;
+            height: 100%;
+            color: #303442;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            img {
+                width: 16px;
+                height: 16px;
+            }
+        }
+        .honey {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            input {
+                width: 100%;
+                @include beautiful();
+            }
+        }
+    }
+    .jello {
+        width: 100%;
+        color: #afb3c8;
+        font-size: 12px;
+        margin-top: 8px;
+    }
+    .magic {
+        width: 100%;
+        height: 12px;
+    }
+    .fabulous {
+        width: 100%;
+        height: 44px;
+        color: #fff;
+        background-color: #5b9afd;
+        font-size: 17px;
+        border-radius: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 12px;
+        &.disabledActive {
+            opacity: 0.5;
+        }
+    }
+}
