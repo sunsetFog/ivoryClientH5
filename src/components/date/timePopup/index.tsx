@@ -28,10 +28,6 @@ function timePopup({ onRef, show, time2Sure }: PropsApi) {
     const initWay = () => {
         setIsOfVisible(true);
     };
-    // 取消
-    const handelClose = () => {
-        setIsOfVisible(false);
-    };
     const timeWay = (item, index) => {
         setSpinachOfActive(index);
         setStartOfTime(item.minDate);
@@ -39,7 +35,7 @@ function timePopup({ onRef, show, time2Sure }: PropsApi) {
         setPizzaOfActive(false);
     };
     const closeWay = () => {
-        handelClose();
+        setIsOfVisible(false);
     };
     const sureWay = () => {
         if (startTime > endTime) {
@@ -60,15 +56,17 @@ function timePopup({ onRef, show, time2Sure }: PropsApi) {
             obj = timeList[spinachActive];
         }
         time2Sure(obj);
-        handelClose();
+        closeWay();
     };
     const startChange = (value) => {
         console.log('--startChange--', value);
         setStartOfTime(dayjs(value));
+        tenderWay(false);
     };
     const endChange = (value) => {
         console.log('--endChange--', value);
         setEndOfTime(dayjs(value));
+        tenderWay(true);
     };
     const tenderWay = (value) => {
         console.log('--tenderWay--', value);
@@ -79,7 +77,7 @@ function timePopup({ onRef, show, time2Sure }: PropsApi) {
         <Popup
             visible={isVisible}
             closeOnMaskClick={true}
-            onClose={handelClose}
+            onClose={closeWay}
             bodyStyle={{ borderRadius: '16px 16px 0px 0px' }}
         >
             <main className={styles.timePopup}>
