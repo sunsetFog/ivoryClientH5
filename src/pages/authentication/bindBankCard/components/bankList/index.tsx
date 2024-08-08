@@ -15,6 +15,7 @@ const bankList = ({ onRef, show }: PropsApi) => {
         };
     });
     const [isVisible, setIsOfVisible] = useState(show || false);
+    const [chosenOne, setChosenOne] = useState('SPDB');
     const initWay = () => {
         setIsOfVisible(true);
     };
@@ -44,6 +45,11 @@ const bankList = ({ onRef, show }: PropsApi) => {
                                 <li key={index}>
                                     <img src={item.remark} />
                                     {item.dictValue}
+                                    <div className={styles.drink}>
+                                        {chosenOne == item.code ? (
+                                            <img src={require('./img/bingo.png')} />
+                                        ) : null}
+                                    </div>
                                 </li>
                             );
                         })}

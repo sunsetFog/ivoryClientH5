@@ -50,7 +50,7 @@ const authentication = () => {
             <button className={styles.fabulous} onClick={goWay}>
                 下一步
             </button>
-            <AreaCode onRef={recRef} show={true}></AreaCode>
+            <AreaCode onRef={recRef}></AreaCode>
         </div>
     );
 };
