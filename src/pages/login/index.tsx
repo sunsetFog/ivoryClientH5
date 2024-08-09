@@ -5,7 +5,6 @@ import withNavigation from '@/@energy/ivoryDesign/@higherOrder/withNavigation';
 import { validateImgUrl } from '@/@energy/ivoryDesign/@http/ajax/verificationCode';
 import LoadingButton from '@/components/loadingButton';
 import { loginApi } from './services';
-import { Button, Modal, Input } from 'antd-mobile';
 class Login extends Component {
     state = {
         checkActive: false,
@@ -252,14 +251,6 @@ class Login extends Component {
                 >
                     登陆
                 </LoadingButton>
-                <Button
-                    className={styles.toGo}
-                    loading={true}
-                    disabled={false}
-                    onClick={this.submitWay}
-                >
-                    登陆55
-                </Button>
                 <div className={styles.catwoman}>
                     <ul>
                         {venus.map((item, index) => {

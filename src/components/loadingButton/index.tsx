@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState, useImperativeHandle } from 'react';
 
 import styles from './index.module.scss';
+import { dotDom } from './constants';
 
 interface PropsType {
     children?: React.ReactNode; // 子内容
@@ -33,7 +34,9 @@ const LoadingButton: React.FC<PropsType> = ({
             } ${className}`}
             onClick={sureWay}
         >
-            {loadingActive ? <img src={require('./img/2.png')} /> : null}
+            {loadingActive ? <img src={require('./img/1.png')} /> : null}
+            {/* {loadingActive ? dotDom() : null} */}
+
             {children}
         </button>
     );

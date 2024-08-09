@@ -82,6 +82,10 @@
         border: 1px solid #e4e6ed;
         border-radius: 8px;
         display: flex;
+        &.dimActive {
+            cursor: not-allowed;
+            background-color: #f8f9fa;
+        }
         @mixin beautiful() {
             height: 24px;
             color: #303442;
