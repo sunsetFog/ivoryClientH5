@@ -8,12 +8,12 @@ import dayjs from 'dayjs';
 const formatText = 'YYYY-MM-DD';
 import { getRecordDatePickerRange } from '@/components/date/timeModal/utils';
 
-interface PropsApi {
+interface PropsType {
     onRef: any; // ref
     show?: boolean; // 展示
     time2Sure?: (obj: any) => any;
 }
-function timePopup({ onRef, show, time2Sure }: PropsApi) {
+function timePopup({ onRef, show, time2Sure }: PropsType) {
     useImperativeHandle(onRef, () => {
         return {
             initWay: initWay,

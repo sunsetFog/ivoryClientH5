@@ -4,11 +4,11 @@ import styles from './index.module.scss';
 import { Popup, IndexBar } from 'antd-mobile';
 import { vegetable } from './constants';
 
-interface PropsApi {
+interface PropsType {
     onRef: any; // ref
     show?: boolean; // 展示
 }
-const areaCode = ({ onRef, show }: PropsApi) => {
+const areaCode = ({ onRef, show }: PropsType) => {
     useImperativeHandle(onRef, () => {
         return {
             initWay: initWay,

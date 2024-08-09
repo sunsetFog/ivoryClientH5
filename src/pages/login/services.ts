@@ -5,3 +5,11 @@ import { get, post } from '@/@energy/ivoryDesign/@http/fetch';
 //         noToast: true,
 //     });
 // }
+let domain = 'http://localhost:8062/sky';
+
+// 每日签到接口
+export function loginApi(params) {
+    return post(domain + '/shop/list', {
+        body: JSON.stringify(params),
+    });
+}

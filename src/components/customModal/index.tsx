@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState, useImperativeHandle } from 'react';
 
 import styles from './index.module.scss';
 
-interface ActivityRecordModalPropsType {
+interface PropsType {
     children?: React.ReactNode; // 子内容
     title?: string; // 标题
     onRef?: any; // ref
@@ -11,7 +11,7 @@ interface ActivityRecordModalPropsType {
 /*
 弹窗
 */
-function customModal({ children, title, onRef, show }: ActivityRecordModalPropsType) {
+function customModal({ children, title, onRef, show }: PropsType) {
     useImperativeHandle(onRef, () => {
         return {
             initWay: initWay,

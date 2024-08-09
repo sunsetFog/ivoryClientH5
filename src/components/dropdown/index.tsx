@@ -1,7 +1,7 @@
 import React, { useState, useRef, useImperativeHandle } from 'react';
 import styles from './index.module.scss';
 
-interface PropsApi {
+interface PropsType {
     children?: React.ReactNode; // 子内容
     title?: string; // 标题
     onRef?: any; // ref
@@ -10,7 +10,7 @@ interface PropsApi {
 /*
 下拉菜单
 */
-function dropdown({ children, onRef, show }: PropsApi) {
+function dropdown({ children, onRef, show }: PropsType) {
     useImperativeHandle(onRef, () => {
         return {
             initWay: initWay,

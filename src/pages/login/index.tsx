@@ -3,6 +3,9 @@ import styles from './index.modules.scss';
 import { venus } from './constants';
 import withNavigation from '@/@energy/ivoryDesign/@higherOrder/withNavigation';
 import { validateImgUrl } from '@/@energy/ivoryDesign/@http/ajax/verificationCode';
+import LoadingButton from '@/components/loadingButton';
+import { loginApi } from './services';
+import { Button, Modal, Input } from 'antd-mobile';
 class Login extends Component {
     state = {
         checkActive: false,
@@ -11,6 +14,7 @@ class Login extends Component {
         focusActive3: false,
         eyeActive: false,
         codeUrl: '',
+        loadingActive: false,
     };
     public componentDidMount() {
         this.codeWay();
@@ -62,8 +66,8 @@ class Login extends Component {
     public empty = () => {
         this.intRef1.current.value = '';
     };
-    public loginWay = (event) => {
-        console.log('--loginWay--', event.target);
+    public focusWay = (event) => {
+        console.log('--focusWay--', event.target);
         let usernamePea = document.getElementById('usernamePea');
         let passwordPea = document.getElementById('passwordPea');
         let codePea = document.getElementById('codePea');
@@ -92,14 +96,41 @@ class Login extends Component {
             });
         }
     };
+    // async和try实现调接口
+    public submitWay = async () => {
+        this.setState({
+            loadingActive: true,
+        });
+        try {
+            // 问题：定时器里无法用await?
+            // 使用一个返回 Promise 的函数来包装 setTimeout
+            const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+            // 等待 3000 毫秒（3 秒）
+            await delay(3000);
+            const resData = await loginApi({});
+            console.log('resData', resData);
+        } catch (err) {
+        } finally {
+            this.setState({
+                loadingActive: false,
+            });
+        }
+    };
     render() {
-        const { checkActive, focusActive1, focusActive2, focusActive3, eyeActive, codeUrl } =
-            this.state;
+        const {
+            checkActive,
+            focusActive1,
+            focusActive2,
+            focusActive3,
+            eyeActive,
+            codeUrl,
+            loadingActive,
+        } = this.state;
         return (
             <section
                 className={styles.loginApt}
                 onClick={(event) => {
-                    this.loginWay(event);
+                    this.focusWay(event);
                 }}
             >
                 <div className={styles.logoBox}>
@@ -213,7 +244,22 @@ class Login extends Component {
                     </div>
                     <div style={{ clear: 'both' }}></div>
                 </div>
-                <div className={styles.toGo}>登陆</div>
+                <LoadingButton
+                    className={styles.toGo}
+                    loadingActive={loadingActive}
+                    disabledActive={false}
+                    onClick={this.submitWay}
+                >
+                    登陆
+                </LoadingButton>
+                <Button
+                    className={styles.toGo}
+                    loading={true}
+                    disabled={false}
+                    onClick={this.submitWay}
+                >
+                    登陆55
+                </Button>
                 <div className={styles.catwoman}>
                     <ul>
                         {venus.map((item, index) => {

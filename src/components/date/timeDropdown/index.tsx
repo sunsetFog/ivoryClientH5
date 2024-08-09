@@ -7,12 +7,12 @@ const formatText = 'YYYY-MM-DD';
 import { getRecordDatePickerRange } from '@/components/date/timeModal/utils';
 import { DatePickerView, Toast } from 'antd-mobile';
 
-interface PropsApi {
+interface PropsType {
     onRef: any; // ref
     show?: boolean; // 展示
     time3Sure?: (obj: any) => any;
 }
-function timeDropdown({ onRef, show, time3Sure }: PropsApi) {
+function timeDropdown({ onRef, show, time3Sure }: PropsType) {
     useImperativeHandle(onRef, () => {
         return {
             initWay: initWay,

@@ -1,0 +1,29 @@
+.LoadingButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity 0.3s;
+
+    // 禁用样式
+    &.dimActive {
+        opacity: 0.5;
+    }
+
+    img {
+        @keyframes loadingAnimation {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        width: 18px;
+        height: auto;
+        margin-right: 10px;
+        animation: loadingAnimation 1s linear infinite;
+    }
+}

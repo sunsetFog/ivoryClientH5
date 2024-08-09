@@ -4,11 +4,11 @@ import styles from './index.module.scss';
 import { Popup } from 'antd-mobile';
 import { chicken } from './contants';
 
-interface PropsApi {
+interface PropsType {
     onRef: any; // ref
     show?: boolean; // 展示
 }
-const bankList = ({ onRef, show }: PropsApi) => {
+const bankList = ({ onRef, show }: PropsType) => {
     useImperativeHandle(onRef, () => {
         return {
             initWay: initWay,

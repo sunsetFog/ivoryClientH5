@@ -6,10 +6,10 @@ import { DatePicker, Toast } from 'antd-mobile';
 import { getRecordDatePickerRange } from './utils';
 import dayjs from 'dayjs';
 const formatText = 'YYYY-MM-DD';
-interface PropsApi {
+interface PropsType {
     onRef: any;
 }
-function timeModal({ onRef }: PropsApi) {
+function timeModal({ onRef }: PropsType) {
     useImperativeHandle(onRef, () => {
         return {
             initWay: initWay,
