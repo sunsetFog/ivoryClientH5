@@ -24,6 +24,7 @@ const themeStore = makeAutoObservable({
         const swan_html = document.documentElement || document.body;
         const screen_status =
             swan_html.clientWidth > swan_html.clientHeight ? 'horizontal' : 'vertical';
+        sessionStorage.setItem('pixelSize', swan_html.clientWidth.toString());
 
         // 根据屏幕宽，计算html的font-size值
         let pixelSize = 16 * (swan_html.clientWidth / 390);

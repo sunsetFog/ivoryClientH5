@@ -1,0 +1,136 @@
+.tab2 {
+    width: 100%;
+
+    .cauliflower {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 360px;
+
+        main {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 360px;
+            height: 100%;
+
+            .toGo {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                z-index: 2;
+                width: 60px;
+                height: 60px;
+                background: none;
+                border: none;
+                outline: none;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        .petal1 {
+            background: url('./img/bg.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+    }
+
+    .papaya {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 40px;
+        margin-top: 20px;
+
+        button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 144px;
+            height: 100%;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            border-radius: 24px;
+
+            @include theme-light() {
+                background: radial-gradient(107.94% 113.71% at 50% -13.71%,
+                        #8bcfff 0%,
+                        #6cc4ff 44.29%,
+                        #49b3ff 89.63%);
+                border: 0.5px solid rgb(255 255 255 / 24%);
+                box-shadow: 0 -2.561px 5.121px 0 rgb(171 210 253 / 36%) inset;
+            }
+
+            @include theme-night() {
+                background: linear-gradient(0deg, rgb(0 0 0 / 15%) 0%, rgb(0 0 0 / 15%) 100%),
+                    radial-gradient(107.94% 113.71% at 50% -13.71%,
+                        #8bcfff 0%,
+                        #6cc4ff 44.29%,
+                        #49b3ff 89.63%);
+                border: 0.5px solid rgb(255 255 255 / 24%);
+                box-shadow: 0 -2.561px 5.121px 0 rgb(171 210 253 / 36%) inset;
+            }
+        }
+    }
+    .scenery {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 20px 0;
+
+        div {
+          display: flex;
+          align-items: center;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+          @include theme-light() {
+            color: #356280;
+          }
+          @include theme-night() {
+            color: #fff;
+          }
+
+          svg {
+            width: 14px;
+            height: 14px;
+            margin-left: 2px;
+          }
+        }
+      }
+
+      .rainbow {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 12px;
+
+        .sp1 {
+          padding: 0 8px;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+          @include theme-light() {
+            color: #31455a;
+          }
+          @include theme-night() {
+            color: #fff;
+          }
+
+          span {
+            margin: 0 4px;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            @include theme-light() {
+              color: #6ac4ff;
+            }
+            @include theme-night() {
+              color: #97d6ff;
+            }
+          }
+        }
+      }
+}

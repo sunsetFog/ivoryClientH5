@@ -10,10 +10,10 @@ export const bread = [
     },
     {
         title: '转盘抽奖',
-        path: '',
+        path: '/activity/turntableRaffle',
     },
     {
         title: '开宝箱',
-        path: '',
+        path: '/activity/treasureChest',
     },
 ];

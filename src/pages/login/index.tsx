@@ -102,9 +102,9 @@ class Login extends Component {
         });
         try {
             // 问题：定时器里无法用await?
-            // 使用一个返回 Promise 的函数来包装 setTimeout
+            // 使用Promise异步函数来包装 setTimeout
             const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-            // 等待 3000 毫秒（3 秒）
+            // await执行异步，等待 3000 毫秒（3 秒）
             await delay(3000);
             const resData = await loginApi({});
             console.log('resData', resData);

@@ -1,0 +1,124 @@
+.treasureChest {
+    width: 100%;
+    min-height: 100%;
+    padding-bottom: 20px;
+
+    @include theme-light() {
+        background-color: rgb(231, 238, 246);
+    }
+
+    @include theme-night() {
+        background-color: #0d1014;
+    }
+
+    .banner {
+        width: 100%;
+        height: 192px;
+        background-image: url('./img/banner1.jpg');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+
+    .pumpkin {
+        :global {
+            .adm-tabs-tab-list {
+                @include theme-light() {
+                    background: #fff;
+                }
+
+                @include theme-night() {
+                    background: rgb(255 255 255 / 6%);
+                }
+            }
+
+            .adm-tabs-tab-wrapper {
+                width: 50%;
+                padding: 0;
+            }
+
+            .adm-tabs-tab {
+                width: 85%;
+                height: 48px;
+                padding: 0;
+                font-size: 16px;
+                font-style: normal;
+                line-height: 48px;
+                text-align: center;
+
+                @include theme-light() {
+                    color: #31455a;
+                }
+
+                @include theme-night() {
+                    color: #fff;
+                }
+            }
+
+            .adm-tabs-tab-active {
+                font-weight: 600;
+
+                @include theme-light() {
+                    color: #6ac4ff;
+                }
+
+                @include theme-night() {
+                    color: #97d6ff;
+                }
+            }
+
+            .adm-tabs-tab-line {
+                @include theme-light() {
+                    background: #6ac4ff;
+                }
+
+                @include theme-night() {
+                    background: #97d6ff;
+                }
+            }
+
+            .adm-tabs-content {
+                padding: 20px 12px;
+            }
+        }
+    }
+
+    .ruleBox {
+        width: 100%;
+        padding: 20px 10px 0;
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 24px;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 900;
+
+            @include theme-light() {
+                color: #31455a;
+                background: url('./img/activit_title.png');
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+            }
+
+            @include theme-night() {
+                color: #fff;
+                background: url('./img/activit_title_night.png');
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+            }
+        }
+
+        .beautiful {
+            @include card-bg();
+            width: 100%;
+            min-height: 200px;
+            margin-top: 20px;
+            border-radius: 20px;
+            // background: linear-gradient(180deg, #FDFEFF 13.02%, #FDFEFF 86.98%, #EDF7FF 100%);
+            // box-shadow: 0px -2px 0px 0px #93B6D3 inset, 0px -3px 2px 0px #AECCE4 inset, 0px 1px 1px 0px #FFF inset, 0px 4px 10px 0px rgba(125, 168, 207, 0.35);
+        }
+    }
+}
