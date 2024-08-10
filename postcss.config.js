@@ -59,7 +59,23 @@ let plugins = {
         landscapeWidth: 844, //横屏时使用的视口宽度
     },
 };
+// module.exports = {
+//     // 去掉px 转 vw
+//     // plugins,
+// };
+
+/*
+
+像素（px）自动转换为 rem
+npm install postcss-pxtorem --save-dev
+
+*/
 module.exports = {
-    // 去掉px 转 vw
-    // plugins,
+    plugins: {
+        'postcss-pxtorem': {
+            rootValue: 16, // 1rem = 16px
+            propList: ['*'], // 属性列表，* 表示所有属性都转换
+            minPixelValue: 2, // 小于或等于 2px 的值不进行转换
+        },
+    },
 };
