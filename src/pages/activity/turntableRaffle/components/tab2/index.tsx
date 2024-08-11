@@ -7,10 +7,8 @@ import themeStore from '@/store/mobx/themeStore';
 import { gifts1, refreshing } from './constants';
 import { observer } from 'mobx-react';
 import { Toast } from 'antd-mobile';
-
-function pxToRemToPx(num) {
-    return (num / 390) * Number(sessionStorage.getItem('pixelSize'));
-}
+import tools from '@/@energy/tools';
+const { pxToRemToPx } = tools;
 
 const tab2 = (props: any) => {
     const sortList = gifts1?.sort((a, b) => {
