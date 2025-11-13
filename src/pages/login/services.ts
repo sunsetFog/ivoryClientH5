@@ -5,7 +5,8 @@ import { get, post } from '@/@energy/ivoryDesign/@http/fetch';
 //         noToast: true,
 //     });
 // }
-let domain = 'http://localhost:8062/sky';
+// let domain = 'http://localhost:8062/sky';
+let domain = 'http://8.148.240.171:9091/sky';
 
 // 每日签到接口
 export function loginApi(params) {

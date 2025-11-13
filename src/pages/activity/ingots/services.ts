@@ -1,5 +1,6 @@
 import { post, get } from '@/@energy/ivoryDesign/@http/fetch';
-let domain = 'http://localhost:8062/sky';
+// let domain = 'http://localhost:8062/sky';
+let domain = 'http://8.148.240.171:9091/sky';
 
 // 每日签到接口
 export function dayApplyTab1(params) {
